@@ -2,6 +2,7 @@ import ButtonNav from '@/Components/ButtonNav'
 import { Carousel } from '@/Components/Carousel'
 import ContentTile from '@/Components/ContentTile'
 import { Navbar } from '@/Components/Navbar'
+import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 
 const Home = () => {
@@ -18,6 +19,9 @@ const Home = () => {
                     ))
                 }
             </div>
+            <div className="mx-4 lg:mx-20 my-10">
+                <StorySection></StorySection>
+            </div>
         </div>
     )
 }
@@ -33,6 +37,26 @@ const ProgramSection = () => {
                 {
                     [1, 2, 3, 4].map((item) => (
                         <ContentTile />
+                    ))
+                }
+            </div>
+        </div>
+    )
+}
+
+const StorySection = () => {
+    return (
+        <div className="">
+            <div className="flex justify-between w-full">
+                <h1 className="text-xl font-semibold mb-2">Stories</h1>
+                <ButtonNav></ButtonNav>
+            </div>
+            <div className="flex overflow-x-scroll h-96">
+                {
+                    [1, 2, 3, 4, 5].map((item) => (
+                        <div className="w-full mr-4 h-full">
+                            <StoryCard />
+                        </div>
                     ))
                 }
             </div>
