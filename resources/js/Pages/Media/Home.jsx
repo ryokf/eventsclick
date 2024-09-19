@@ -1,3 +1,4 @@
+import ButtonNav from '@/Components/ButtonNav'
 import { Carousel } from '@/Components/Carousel'
 import ContentTile from '@/Components/ContentTile'
 import { Navbar } from '@/Components/Navbar'
@@ -11,7 +12,11 @@ const Home = () => {
                 <Carousel></Carousel>
             </div>
             <div className="mx-4 lg:mx-20 my-10">
-                <ProgramSection></ProgramSection>
+                {
+                    [1, 2, 3, 4].map((item) => (
+                        <ProgramSection></ProgramSection>
+                    ))
+                }
             </div>
         </div>
     )
@@ -19,9 +24,10 @@ const Home = () => {
 
 const ProgramSection = () => {
     return (
-        <div className="">
+        <div className="my-8">
             <div className="flex justify-between w-full">
-                <h1 className="text-2xl font-semibold mb-2">Program A</h1>
+                <h1 className="text-xl font-semibold mb-2">Program A</h1>
+                <ButtonNav></ButtonNav>
             </div>
             <div className="grid grid-cols-2 gap-2 w-full">
                 {
