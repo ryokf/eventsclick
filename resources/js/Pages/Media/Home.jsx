@@ -2,6 +2,7 @@ import ButtonNav from '@/Components/ButtonNav'
 import { Carousel } from '@/Components/Carousel'
 import ContentTile from '@/Components/ContentTile'
 import { Navbar } from '@/Components/Navbar'
+import { PollingCard } from '@/Components/PollingCard'
 import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 
@@ -21,6 +22,9 @@ const Home = () => {
             </div>
             <div className="mx-4 lg:mx-20 my-10">
                 <StorySection></StorySection>
+            </div>
+            <div className="mx-4 lg:mx-20 my-10">
+                <PollingSection></PollingSection>
             </div>
         </div>
     )
@@ -56,6 +60,26 @@ const StorySection = () => {
                     [1, 2, 3, 4, 5].map((item) => (
                         <div className="w-full mr-4 h-full">
                             <StoryCard />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    )
+}
+
+const PollingSection = () => {
+    return (
+        <div className="my-8">
+            <div className="flex justify-between w-full">
+                <h1 className="text-xl font-semibold mb-2">Polling</h1>
+                <ButtonNav></ButtonNav>
+            </div>
+            <div className="flex overflow-x-scroll h-full">
+                {
+                    [1, 2, 3, 4].map((item) => (
+                        <div className="w-full mr-4 h-full">
+                            <PollingCard></PollingCard>
                         </div>
                     ))
                 }
