@@ -1,6 +1,7 @@
 import ButtonNav from '@/Components/ButtonNav'
 import { Carousel } from '@/Components/Carousel'
 import ContentTile from '@/Components/ContentTile'
+import { Footer } from '@/Components/Footer'
 import { Navbar } from '@/Components/Navbar'
 import { PollingCard } from '@/Components/PollingCard'
 import StoryCard from '@/Components/StoryCard'
@@ -26,6 +27,7 @@ const Home = () => {
             <div className="mx-4 lg:mx-20 my-10">
                 <PollingSection></PollingSection>
             </div>
+            <Footer></Footer>
         </div>
     )
 }
