@@ -6,11 +6,11 @@ import { Navbar } from '@/Components/Navbar'
 import { PollingCard } from '@/Components/PollingCard'
 import StoryCard from '@/Components/StoryCard'
 import React from 'react'
+import GeneralLayout from '../../Layouts/GeneralLayout';
 
 const Home = () => {
     return (
-        <div className="">
-            <Navbar></Navbar>
+        <GeneralLayout>
             <div className="px-4 lg:px-20 pt-6 h-60 lg:h-svh">
                 <Carousel></Carousel>
             </div>
@@ -27,8 +27,7 @@ const Home = () => {
             <div className="mx-4 lg:mx-20 my-10">
                 <PollingSection></PollingSection>
             </div>
-            <Footer></Footer>
-        </div>
+        </GeneralLayout>
     )
 }
 
