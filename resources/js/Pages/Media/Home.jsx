@@ -17,7 +17,7 @@ const Home = () => {
             <div className="mx-4 lg:mx-20 my-10">
                 {
                     [1, 2, 3, 4].map((item) => (
-                        <ProgramSection></ProgramSection>
+                        <ProgramSection key={item}></ProgramSection>
                     ))
                 }
             </div>
@@ -41,7 +41,7 @@ const ProgramSection = () => {
             <div className="grid grid-cols-2 gap-2 w-full">
                 {
                     [1, 2, 3, 4].map((item) => (
-                        <ContentTile />
+                        <ContentTile key={item}/>
                     ))
                 }
             </div>
@@ -59,7 +59,7 @@ const StorySection = () => {
             <div className="flex overflow-x-scroll h-96">
                 {
                     [1, 2, 3, 4, 5].map((item) => (
-                        <div className="w-full mr-4 h-full">
+                        <div className="w-full mr-4 h-full" key={item}>
                             <StoryCard />
                         </div>
                     ))
@@ -79,7 +79,7 @@ const PollingSection = () => {
             <div className="flex overflow-x-scroll h-full">
                 {
                     [1, 2, 3, 4].map((item) => (
-                        <div className="w-full mr-4 h-full">
+                        <div className="w-full mr-4 h-full" key={item}>
                             <PollingCard></PollingCard>
                         </div>
                     ))
