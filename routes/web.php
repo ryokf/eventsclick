@@ -16,9 +16,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Media/Home');
-});
+Route::redirect('/', '/media');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -31,3 +29,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/media.php';
