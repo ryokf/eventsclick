@@ -11,7 +11,7 @@ import { FaSearch } from "react-icons/fa";
 export function Navbar() {
     return (
         <NavbarFB fluid rounded className="bg-primary">
-            <NavbarFB.Brand href="https://flowbite-react.com" className="mx-2">
+            <NavbarFB.Brand href="/" className="mx-2">
                 <img src="/assets/logo.png" className="h-9" alt="Eventsclick Logo" />
             </NavbarFB.Brand>
             <div className="flex md:order-2">

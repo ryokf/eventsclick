@@ -11,11 +11,11 @@ const ContentTile = ({ className = "" }) => {
             <div style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D')" }} className={`bg-cover w-full aspect-video rounded-lg overflow-hidden ${className}`}>
                 <VideoModal/>
             </div>
-            <div className="mt-1">
+            <a href="/media/program/content" className="mt-1 block">
                 <p className="text-xs text-primary">Category</p>
                 <h1 className="text-sm">Lorem ipsum dolor sit</h1>
                 <p className="text-xs text-gray-400">15 September 2022</p>
-            </div>
+            </a>
         </div>
     )
 }
