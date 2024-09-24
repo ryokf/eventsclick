@@ -6,11 +6,13 @@ import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 import GeneralLayout from '../../Layouts/GeneralLayout';
 
-const Home = () => {
+const Home = ({ headers }) => {
+    console.log(headers)
+
     return (
         <GeneralLayout>
             <div className="px-4 lg:w-10/12 mx-auto lg:px-10 pt-6 h-60 lg:h-fit">
-                <Carousel></Carousel>
+                <Carousel headers={headers}></Carousel>
             </div>
             <div className="mx-4 lg:w-10/12 lg:px-10 lg:mx-auto my-10">
                 {
