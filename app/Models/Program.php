@@ -15,4 +15,9 @@ class Program extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function contents()
+    {
+        return $this->hasManyThrough(Content::class, Category::class);
+    }
 }

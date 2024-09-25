@@ -15,9 +15,16 @@ class ContentFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
     public function definition(): array
     {
-        // $contents = DB->where('is_header', true)->count;
+        $youtubeIds = [
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/0UOn0QExwx0?si=ngDQUcVPuF-N0l_l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',  // Contoh video ID valid
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/5FrhtahQiRc?si=hPAiVP4p3-QOZYbd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/C3GouGa0noM?si=boZengmBktKUH4H-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/kmu7fEW-Pio?si=oIKAJGQ86hV0ceEW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+        ];
 
         return [
             'category_id' => $this->faker->numberBetween(1, 50), // related to category table
@@ -25,7 +32,7 @@ class ContentFactory extends Factory
             'likes' => $this->faker->numberBetween(0, 1000),
             'is_header' => $this->faker->boolean,
             'tags' => $this->faker->words(3, true),
-            'url_video' => $this->faker->url,
+            'url_video' => $this->faker->randomElement($youtubeIds),
         ];
     }
 }

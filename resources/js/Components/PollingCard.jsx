@@ -24,7 +24,7 @@ export function PollingCard({question, image, voter_count = 0, options}) {
             <div className="">
                 {
                     options.map((item, index) => (
-                        <PollingOption onClick={() => setAnswered(index)} answered={Answered === index} answer={item.answers} key={item} />
+                        <PollingOption onClick={() => setAnswered(index)} answered={Answered === index} answer={item.answers} key={item.id} />
                     ))
                 }
             </div>

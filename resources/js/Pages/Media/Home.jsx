@@ -6,9 +6,8 @@ import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 import GeneralLayout from '../../Layouts/GeneralLayout';
 
-const Home = ({ headers, programs, stories, quizzes }) => {
-    console.log(headers)
-
+const Home = ({ headers, programs, stories, quizzes, program }) => {
+    console.log(programs)
     return (
         <GeneralLayout>
             <div className="px-4 lg:w-10/12 mx-auto lg:px-10 pt-6 h-60 lg:h-fit">
@@ -16,8 +15,8 @@ const Home = ({ headers, programs, stories, quizzes }) => {
             </div>
             <div className="mx-4 lg:w-10/12 lg:px-10 lg:mx-auto my-10">
                 {
-                    [1, 2, 3, 4].map((item) => (
-                        <ProgramSection key={item}></ProgramSection>
+                    programs.map((item) => (
+                        <ProgramSection key={item} id={item.id} title={item.title} contents={item.contents} ></ProgramSection>
                     ))
                 }
             </div>
@@ -31,17 +30,17 @@ const Home = ({ headers, programs, stories, quizzes }) => {
     )
 }
 
-const ProgramSection = () => {
+const ProgramSection = ({id, title, contents}) => {
     return (
-        <div className="my-8 lg:my-20">
+        <div className={`my-8 lg:my-20`}>
             <div className="flex justify-between w-full">
-                <h1 className="text-xl lg:text-3xl lg:mb-6 font-semibold mb-2">Program A</h1>
+                <h1 className="text-xl lg:text-3xl lg:mb-6 font-semibold mb-2">{title}</h1>
                 <ButtonNav></ButtonNav>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full">
                 {
-                    [1, 2, 3, 4].map((item) => (
-                        <ContentTile key={item}/>
+                    contents.filter((item, idx) => idx < 4).map((item, index) => (
+                        <ContentTile title={item.title} category={item.category} created_at={item.created_at} image={item.image} url_video={item.url_video} key={item}/>
                     ))
                 }
             </div>
@@ -50,8 +49,6 @@ const ProgramSection = () => {
 }
 
 const StorySection = ({stories}) => {
-    console.log(stories)
-
     return (
         <div className="my-8 lg:my-20 lg:w-11/12 lg:mx-auto lg:px-10">
             <div className="flex justify-between w-full">
@@ -61,7 +58,7 @@ const StorySection = ({stories}) => {
             <div className="flex gap-4 overflow-x-scroll h-fit">
                 {
                     stories.map((item) => (
-                        <div className="w-full h-full" key={item}>
+                        <div className="w-full h-full" key={item.id}>
                             <StoryCard title={item.title} image={item.image}/>
                         </div>
                     ))
@@ -72,8 +69,6 @@ const StorySection = ({stories}) => {
 }
 
 const PollingSection = ({quizzes}) => {
-    console.log(quizzes)
-
     return (
         <div className="my-8 lg:my-20 lg:w-11/12 lg:mx-auto lg:px-10">
             <div className="flex justify-between w-full">
@@ -83,7 +78,7 @@ const PollingSection = ({quizzes}) => {
             <div className="flex gap-4 overflow-x-scroll h-fit">
                 {
                     quizzes.map((item) => (
-                        <div className="w-full h-full" key={item}>
+                        <div className="w-full h-full" key={item.id}>
                             <PollingCard question={item.question} image={item.image} options={item.options}></PollingCard>
                         </div>
                     ))

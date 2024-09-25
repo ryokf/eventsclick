@@ -14,11 +14,11 @@ class HomeController extends Controller
 {
     public function index(Content $content, Program $program, Story $story, Quiz $quiz)
     {
-        $headers = $content->where('is_header', true)->get();
-        $programs = $program->select('title')->get();
+        $headers = $content->where('is_header', true)->limit(4)->get();
+        $programs = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->get();
         $stories = $story->orderBy('created_at', 'desc')->take(8)->get();
         $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->take(8)->get();
 
-        return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes'));
+        return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes', 'program'));
     }
 }
