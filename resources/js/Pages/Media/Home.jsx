@@ -6,7 +6,7 @@ import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 import GeneralLayout from '../../Layouts/GeneralLayout';
 
-const Home = ({ headers, programs, stories }) => {
+const Home = ({ headers, programs, stories, quizzes }) => {
     console.log(headers)
 
     return (
@@ -25,7 +25,7 @@ const Home = ({ headers, programs, stories }) => {
                 <StorySection stories={stories}></StorySection>
             </div>
             <div className="mx-4 lg:mx-20 my-10">
-                <PollingSection></PollingSection>
+                <PollingSection quizzes={quizzes}></PollingSection>
             </div>
         </GeneralLayout>
     )
@@ -71,7 +71,9 @@ const StorySection = ({stories}) => {
     )
 }
 
-const PollingSection = () => {
+const PollingSection = ({quizzes}) => {
+    console.log(quizzes)
+
     return (
         <div className="my-8 lg:my-20 lg:w-11/12 lg:mx-auto lg:px-10">
             <div className="flex justify-between w-full">
@@ -80,9 +82,9 @@ const PollingSection = () => {
             </div>
             <div className="flex gap-4 overflow-x-scroll h-fit">
                 {
-                    [1, 2, 3, 4].map((item) => (
+                    quizzes.map((item) => (
                         <div className="w-full h-full" key={item}>
-                            <PollingCard></PollingCard>
+                            <PollingCard question={item.question} image={item.image} options={item.options}></PollingCard>
                         </div>
                     ))
                 }
