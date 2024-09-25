@@ -29,6 +29,7 @@ class ContentFactory extends Factory
         return [
             'category_id' => $this->faker->numberBetween(1, 50), // related to category table
             'title' => $this->faker->sentence(3),
+            'content' => $this->faker->sentence(100),
             'likes' => $this->faker->numberBetween(0, 1000),
             'is_header' => $this->faker->boolean,
             'tags' => $this->faker->words(3, true),

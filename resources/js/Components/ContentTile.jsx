@@ -1,18 +1,14 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from "flowbite-react";
 import { FaPlay } from "react-icons/fa";
 import parse from 'html-react-parser';
 
 const ContentTile = ({ className = "",id,  title, category, created_at, image, url_video }) => {
-    console.log(url_video)
 
     let image_id = url_video.split(" ")[3];
     image_id = image_id.split("/")[4];
     image_id = image_id.split("?")[0];
-    console.log(image_id)
 
-    const [isOpen, setOpen] = useState(false);
     return (
         <div className="">
             <div style={{ backgroundImage: `url(https://i.ytimg.com/vi/${image_id}/maxresdefault.jpg)`}} className={`bg-cover w-full aspect-video rounded-lg overflow-hidden ${className}`}>

@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index(Content $content, Program $program, Story $story, Quiz $quiz)
     {
-        $headers = $content->where('is_header', true)->limit(4)->get();
+        $headers = $content->where('is_header', true)->with('comments')->limit(9)->get();
         $programs = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->get();
         $stories = $story->orderBy('created_at', 'desc')->take(8)->get();
         $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->take(8)->get();
