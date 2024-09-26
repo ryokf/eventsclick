@@ -19,6 +19,11 @@ class HomeController extends Controller
         $stories = $story->orderBy('created_at', 'desc')->take(8)->get();
         $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->take(8)->get();
 
-        return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes', 'program'));
+        Inertia::share(
+            'program',
+            $program->select('title', 'visibility', 'id')->where('visibility', 'visible')->orWhere('visibility', 'archive')->get()
+        );
+
+        return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes'));
     }
 }

@@ -6,7 +6,7 @@ import StoryCard from '@/Components/StoryCard'
 import React from 'react'
 import GeneralLayout from '../../Layouts/GeneralLayout';
 
-const Home = ({ headers, programs, stories, quizzes, program }) => {
+const Home = ({ headers, programs, stories, quizzes}) => {
     return (
         <GeneralLayout>
             <div className="px-4 lg:w-10/12 mx-auto lg:px-10 pt-6 h-60 lg:h-fit">
