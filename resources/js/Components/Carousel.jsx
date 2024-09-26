@@ -1,14 +1,15 @@
-
 "use client";
 
 import dateFormat from "@/helpers/dateFormat";
 import { Carousel as CarouselFB } from "flowbite-react";
+import { isMobile } from 'react-device-detect';
+
 export function Carousel({ headers }) {
     console.log(Object.keys(headers[1].comments).length)
     return (
         // <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
         <div className="w-full m-auto lg:aspect-[21/9] lg:max-h-fit h-full">
-            <CarouselFB indicators={true} className="">
+            <CarouselFB indicators={!isMobile} className="">
                 {
                     headers.map((content) => {
 
@@ -24,7 +25,7 @@ export function Carousel({ headers }) {
                                     <div className=""></div>
                                     <div className="m-3 lg:m-10">
                                         <h1 className="font-semibold lg:text-6xl lg:font-bold text-white mb-1">{content.title}</h1>
-                                        <p className="text-xs lg:text-lg text-gray-300 leading-none">{content.content.slice(0, 110)}</p>
+                                        <p className="text-xs lg:text-lg text-gray-300 leading-none">{content.content.slice(0, isMobile ? 50 : 110)}</p>
                                         <div className="flex w-full gap-3 lg:text-lg text-gray-300 text-xs mt-1">
                                             <p>{content.likes} suka</p> <p> {Object.keys(headers[1].comments).length} komentar </p> <p>{dateFormat(content.created_at)}</p>
                                         </div>

@@ -30,11 +30,12 @@ const Home = ({ headers, programs, stories, quizzes}) => {
 }
 
 const ProgramSection = ({id, title, contents}) => {
+    console.log(contents)
     return (
         <div className={`my-8 lg:my-20`}>
             <div className="flex justify-between w-full">
                 <h1 className="text-xl lg:text-3xl lg:mb-6 font-semibold mb-2">{title}</h1>
-                <ButtonNav></ButtonNav>
+                <ButtonNav id={id}></ButtonNav>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full">
                 {

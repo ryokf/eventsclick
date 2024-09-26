@@ -9,13 +9,10 @@ import { FaSearch } from "react-icons/fa";
 import { usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
-
-
 export function Navbar() {
     const { program } = usePage().props
 
     const getProgram = program.map((item) => [item.id, item.title, item.visibility])
-    console.log(getProgram)
 
     return (
         <NavbarFB fluid rounded className="bg-primary">

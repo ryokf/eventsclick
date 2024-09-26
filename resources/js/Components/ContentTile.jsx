@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Button, Modal } from "flowbite-react";
 import { FaPlay } from "react-icons/fa";
 import parse from 'html-react-parser';
+import dateFormat from '@/helpers/dateFormat';
 
-const ContentTile = ({ className = "",id,  title, category, created_at, image, url_video }) => {
+const ContentTile = ({ className = "",id ="",  title, category = "", created_at, url_video }) => {
 
     let image_id = url_video.split(" ")[3];
     image_id = image_id.split("/")[4];
@@ -17,7 +18,7 @@ const ContentTile = ({ className = "",id,  title, category, created_at, image, u
             <a href="/media/program/content" className="mt-1 block">
                 <p className="text-xs text-primary">Category</p>
                 <h1 className="text-sm">{title}</h1>
-                <p className="text-xs text-gray-400">{created_at}</p>
+                <p className="text-xs text-gray-400">{dateFormat(created_at)}</p>
             </a>
         </div>
     )
