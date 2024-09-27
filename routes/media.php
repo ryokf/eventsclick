@@ -10,5 +10,5 @@ Route::prefix('/media')->name('media.')->group(function () {
 
     Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
-    Route::get('/program/content', [ContentController::class, 'index'])->name('category');
+    Route::get('/program/content', [ContentController::class, 'index'])->name('content');
 });

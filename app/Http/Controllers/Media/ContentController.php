@@ -3,13 +3,25 @@
 namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content;
+use App\Models\Program;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ContentController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Content $content, User $user, Program $program)
     {
-        return Inertia::render('Media/Content/index');
+        $contents = $content->with('comments')->with('category')->find($request->query('id'));
+
+        $userComments = [];
+        foreach ($contents->comments as $id=> $value) {
+            $userComments[$id] = $user->find($value->user_id);
+        }
+
+        // $relatedContents = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->get();
+
+        return Inertia::render('Media/Content/index', compact('contents', 'userComments'));
     }
 }

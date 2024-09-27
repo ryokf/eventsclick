@@ -69,7 +69,7 @@ const ContentSection = ({title, contents}) => {
                 {
                     contents.map((item) => (
                         <div key={item} className="w-fit h-full">
-                            <ContentTile className='!w-44' key={item} title={item.title} category={item.category_id} created_at={item.created_at} url_video={item.url_video}/>
+                            <ContentTile className='!w-44' key={item} id={item.id} title={item.title} category={item.category_id} created_at={item.created_at} url_video={item.url_video}/>
                         </div>
                     ))
                 }

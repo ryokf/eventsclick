@@ -40,7 +40,7 @@ const ProgramSection = ({id, title, contents}) => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full">
                 {
                     contents.filter((item, idx) => idx < 4).map((item, index) => (
-                        <ContentTile title={item.title} category={item.category} created_at={item.created_at} image={item.image} url_video={item.url_video} key={item}/>
+                        <ContentTile id={item.id} title={item.title} category={item.category} created_at={item.created_at} image={item.image} url_video={item.url_video} key={item}/>
                     ))
                 }
             </div>
