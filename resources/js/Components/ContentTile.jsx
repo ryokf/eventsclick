@@ -4,7 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import parse from 'html-react-parser';
 import dateFormat from '@/helpers/dateFormat';
 
-const ContentTile = ({ className = "",id ="",  title, category = "", created_at, url_video }) => {
+const ContentTile = ({ className = "", href,  title, category = "", created_at, url_video }) => {
 
     let image_id = url_video.split(" ")[3];
     image_id = image_id.split("/")[4];
@@ -15,7 +15,7 @@ const ContentTile = ({ className = "",id ="",  title, category = "", created_at,
             <div style={{ backgroundImage: `url(https://i.ytimg.com/vi/${image_id}/maxresdefault.jpg)`}} className={`bg-cover w-full aspect-video rounded-lg overflow-hidden ${className}`}>
                 <VideoModal url_video={url_video}/>
             </div>
-            <a href={`/media/program/content?id=${id}`} className="mt-1 block">
+            <a href={href} className="mt-1 block">
                 <p className="text-xs text-primary">Category</p>
                 <h1 className="text-sm">{title}</h1>
                 <p className="text-xs text-gray-400">{dateFormat(created_at)}</p>
