@@ -14,14 +14,14 @@ const DetailProgram = ({ programs }) => {
 
     return (
         <GeneralLayout>
-            <div className="my-6 w-11/12 mx-auto">
+            <div className="my-6 w-11/12 mx-auto lg:w-1/2 lg:border rounded-lg lg:p-4">
                 <Breadcrumb className="mb-4" aria-label="Default breadcrumb example">
                     <Breadcrumb.Item href="/media/dashboard" icon={HiHome}>
                         Home
                     </Breadcrumb.Item>
                     <Breadcrumb.Item href="#">{programs.title.slice(0, 20)+"..."}</Breadcrumb.Item>
                 </Breadcrumb>
-                <form className="flex max-w-md flex-col gap-4">
+                <form className="flex w-full flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="title" value="Title" />
@@ -34,7 +34,7 @@ const DetailProgram = ({ programs }) => {
                         </div>
                         <TextInput id="description" value={programs.description} type="text" required />
                     </div>
-                    <div className="max-w-md">
+                    <div className="w-full">
                         <div className="mb-2 block">
                             <Label htmlFor="countries" value="visbilitas" />
                         </div>
@@ -66,7 +66,7 @@ const DetailProgram = ({ programs }) => {
                                         <Table.Cell>{index + 1}</Table.Cell>
                                         <Table.Cell>{category.title}</Table.Cell>
                                         <Table.Cell>
-                                            <a href={`/media/dashboard/program/category?id=${ category.id }`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                                            <a href={`/media/dashboard/program/category?id=${ category.id }`} className="font-medium bg-primary text-white px-3 py-1 rounded hover:underline dark:text-cyan-500">
                                                 detail
                                             </a>
                                         </Table.Cell>

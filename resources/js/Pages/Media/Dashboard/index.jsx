@@ -8,7 +8,7 @@ import imageToken from '@/helpers/imageToken';
 const Dashboard = ({ programs, bgCover, headers }) => {
     return (
         <GeneralLayout>
-            <div className="w-11/12 mx-auto">
+            <div className="w-11/12 lg:w-1/2 mx-auto ">
                 <div className="my-6">
                     <div className="w-full flex justify-between">
                         <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar program</h1>

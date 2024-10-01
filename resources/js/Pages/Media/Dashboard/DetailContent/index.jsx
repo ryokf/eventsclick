@@ -1,6 +1,6 @@
 import GeneralLayout from '@/Layouts/GeneralLayout'
 import React, { useState } from 'react'
-import { Breadcrumb, Button, Label, Select, Textarea, TextInput } from "flowbite-react";
+import { Breadcrumb, Button, Label, Textarea, TextInput } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import imageToken from '@/helpers/imageToken';
 import Checkbox from '@/Components/Checkbox';
@@ -11,7 +11,7 @@ const DetailContent = ({ contents, programTitle, categoryTitle }) => {
 
     return (
         <GeneralLayout>
-            <div className="my-6 w-11/12 mx-auto">
+            <div className="my-6 lg:py-6 lg:w-1/2 mx-auto lg:border rounded-lg flex flex-col items-center">
                 <Breadcrumb className="mb-4" aria-label="Default breadcrumb example">
                     <Breadcrumb.Item href="/media/dashboard" icon={HiHome}>
                         Home
@@ -20,7 +20,7 @@ const DetailContent = ({ contents, programTitle, categoryTitle }) => {
                     <Breadcrumb.Item href="#">{categoryTitle.title.slice(0, 6) + "..."}</Breadcrumb.Item>
                     <Breadcrumb.Item href="#">{contents.title.slice(0, 10) + "..."}</Breadcrumb.Item>
                 </Breadcrumb>
-                <form className="flex max-w-md flex-col gap-4">
+                <form className="flex w-10/12 flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="title" value="Title" />

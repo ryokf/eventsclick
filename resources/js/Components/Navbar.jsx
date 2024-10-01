@@ -14,6 +14,9 @@ export function Navbar() {
 
     const getProgram = program.map((item) => [item.id, item.title, item.visibility])
 
+    const url = window.location.href
+    const is_dashboard = url.split("/")[4] === 'dashboard'
+
     return (
         <NavbarFB fluid rounded className="bg-primary">
             <NavbarFB.Brand href="/" className="mx-2">
@@ -38,9 +41,12 @@ export function Navbar() {
                     }
                 </Dropdown>
             </NavbarFB.Collapse>
-            <div className="lg:hidden fixed flex items-center justify-center aspect-square w-14 bg-primary rounded-full right-8 bottom-8">
-                <Drawer />
-            </div>
+            {
+                !is_dashboard &&
+                <div className="lg:hidden fixed flex items-center justify-center aspect-square w-14 bg-primary rounded-full right-8 bottom-8">
+                    <Drawer />
+                </div>
+            }
         </NavbarFB>
     );
 }
