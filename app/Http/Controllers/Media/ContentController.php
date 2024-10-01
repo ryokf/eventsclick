@@ -16,11 +16,9 @@ class ContentController extends Controller
         $contents = $content->with('comments')->with('category')->find($request->query('id'));
 
         $userComments = [];
-        foreach ($contents->comments as $id=> $value) {
+        foreach ($contents->comments as $id => $value) {
             $userComments[$id] = $user->find($value->user_id);
         }
-
-        // $relatedContents = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->get();
 
         return Inertia::render('Media/Content/index', compact('contents', 'userComments'));
     }

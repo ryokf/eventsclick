@@ -23,13 +23,10 @@ class ProgramController extends Controller
 
         $categories = $category->with('contents')->where('program_id', $request->query('id'))->get();
 
-        $latest= $categories->map(function ($category) use ($content) {
+        $latest = $categories->map(function ($category) use ($content) {
             return $content->where('category_id', $category->id)->orderByDesc('created_at')->get();
         });
         $latest = collect($latest)->flatten()->sortByDesc('created_at');
-
-
-        // $headers = $content->where('id')
 
         return Inertia::render('Media/Program/index', compact('programDetail', 'categories', 'headers', 'latest'));
     }

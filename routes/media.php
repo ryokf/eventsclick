@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Media\CompanyProfileController;
 use App\Http\Controllers\Media\ContentController;
 use App\Http\Controllers\Media\DashboardController;
 use App\Http\Controllers\Media\HomeController;
@@ -20,4 +21,6 @@ Route::prefix('/media')->name('media.')->group(function () {
     Route::get('/dashboard/program/category', [DashboardController::class, 'category'])->name('dashboard.category');
 
     Route::get('/dashboard/program/category/content', [DashboardController::class, 'content'])->name('dashboard.content');
+
+    Route::get('/about-us', [CompanyProfileController::class, 'AboutUs'])->name('about-us');
 });

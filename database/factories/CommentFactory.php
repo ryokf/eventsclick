@@ -17,7 +17,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-           'content_id' => $this->faker->numberBetween(1, 200), // related to content table
+            'content_id' => $this->faker->numberBetween(1, 200), // related to content table
             'user_id' => $this->faker->numberBetween(1, 10), // related to user table
             'comment' => $this->faker->sentence,
         ];

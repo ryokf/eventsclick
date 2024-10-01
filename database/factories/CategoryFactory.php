@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'program_id' =>$this->faker->numberBetween(1, 5), // related to program table
+            'program_id' => $this->faker->numberBetween(1, 5), // related to program table
             'title' => $this->faker->word,
         ];
     }

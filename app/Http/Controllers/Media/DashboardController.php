@@ -19,11 +19,11 @@ class DashboardController extends Controller
         $bgCover = [];
         foreach ($programs as $key => $program) {
             $bgCover[$key] = DB::table('contents')
-            ->join('categories', 'contents.category_id', '=', 'categories.id')
-            ->where('categories.program_id', $program->id)
-            ->select('contents.url_video')
-            ->orderBy('contents.created_at', 'desc')
-            ->first();
+                ->join('categories', 'contents.category_id', '=', 'categories.id')
+                ->where('categories.program_id', $program->id)
+                ->select('contents.url_video')
+                ->orderBy('contents.created_at', 'desc')
+                ->first();
         }
 
         $headers = $content->where('is_header_home', true)->with('comments')->limit(9)->get();
@@ -49,10 +49,8 @@ class DashboardController extends Controller
     public function content(Request $request, Program $program, Category $category, Content $content)
     {
         $contents = $content->find($request->query('id'));
-        // dd($contents);
 
         $categoryTitle = $category->find($contents->category_id);
-        // dd($categoryTitle);
 
         $programTitle = $program->find($categoryTitle->program_id)->title;
 

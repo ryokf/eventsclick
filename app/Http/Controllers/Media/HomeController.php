@@ -7,7 +7,6 @@ use App\Models\Content;
 use App\Models\Program;
 use App\Models\Quiz;
 use App\Models\Story;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class HomeController extends Controller
