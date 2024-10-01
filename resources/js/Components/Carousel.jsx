@@ -5,7 +5,6 @@ import { Carousel as CarouselFB } from "flowbite-react";
 import { isMobile } from 'react-device-detect';
 
 export function Carousel({ headers }) {
-    console.log(Object.keys(headers[1].comments).length)
     return (
         // <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
         <div className="w-full m-auto lg:aspect-[21/9] lg:max-h-fit h-full">
@@ -16,8 +15,6 @@ export function Carousel({ headers }) {
                         let image_id = content.url_video.split(" ")[3];
                         image_id = image_id.split("/")[4];
                         image_id = image_id.split("?")[0];
-
-                        console.log(content.created_at)
 
                         return (
                             <a href= {`/media/program/content/`} key={content.id} className="w-full h-full bg-cover z-10 absolute" style={{ backgroundImage: `url(https://i.ytimg.com/vi/${image_id}/maxresdefault.jpg)`}}>

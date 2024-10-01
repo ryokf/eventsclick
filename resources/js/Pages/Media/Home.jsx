@@ -30,7 +30,6 @@ const Home = ({ headers, programs, stories, quizzes}) => {
 }
 
 const ProgramSection = ({id, title, contents}) => {
-    console.log(contents)
     return (
         <div className={`my-8 lg:my-20`}>
             <div className="flex justify-between w-full">

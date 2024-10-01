@@ -6,14 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Program;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+
 
 class DashboardController extends Controller
 {
     public function index(Program $program, Content $content)
     {
+        if(auth()->user()->is_admin == 0) {
+            return redirect('/media');
+        }
+
         $programs = $program->select('title', 'id')->limit(8)->get();
 
         $bgCover = [];
