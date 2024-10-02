@@ -23,7 +23,7 @@ Route::prefix('/media')->name('media.')->group(function () {
     Route::controller(CategoryController::class)->group(function () {
         // Route::get('/program/category', 'index')->name('category');
         Route::post('/category', 'store')->name('category.store');
-        Route::put('/program/category/{id}', 'edit')->name('category.edit');
+        Route::put('/category/{id}', 'edit')->name('category.edit');
     });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');

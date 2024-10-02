@@ -1,10 +1,20 @@
 import ContentTile from '@/Components/ContentTile';
 import GeneralLayout from '@/Layouts/GeneralLayout'
+import { router, useForm } from '@inertiajs/react';
 import { Label, TextInput, Button, Breadcrumb } from 'flowbite-react'
 import React from 'react'
 import { HiHome } from "react-icons/hi";
 
 const DetailCategory = ({ categories, programTitle }) => {
+    const { data, setData, post, processing, errors } = useForm({
+        title: categories.title,
+    })
+
+    const editCategory = (e) => {
+        e.preventDefault();
+        router.put(`/media/category/${ categories.id }`, data);
+    }
+
     return (
         <GeneralLayout>
             <div className="w-11/12 mx-auto my-6 lg:w-1/2 lg:border rounded-lg lg:p-4">
@@ -20,9 +30,9 @@ const DetailCategory = ({ categories, programTitle }) => {
                         <Label htmlFor="title" value="Title" />
                     </div>
                     <div className="col-span-2">
-                        <TextInput className="!m-0" id="title" type="text" value={categories.title} required />
+                        <TextInput className="!m-0" id="title" type="text" value={data.title} onChange={(e) => setData('title', e.target.value)} required />
                     </div>
-                    <Button type="submit" className="bg-[#fbbf24] !text-white">Edit</Button>
+                    <Button onClick={editCategory} type="submit" className="bg-[#fbbf24] !text-white">Edit</Button>
                 </form>
                 <div className="mb-8">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Konten</h1>

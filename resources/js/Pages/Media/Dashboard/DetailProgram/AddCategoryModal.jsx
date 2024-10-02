@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 export default function AddCategoryModal(program_id) {
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
     const [category, setCategory] = useState('');
 
 

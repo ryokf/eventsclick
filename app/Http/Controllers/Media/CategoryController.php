@@ -22,4 +22,18 @@ class CategoryController extends Controller
 
         return redirect('/media/dashboard/program?id=' . $request->program_id);
     }
+
+    public function edit(Request $request, $id){
+
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        $category = Category::find($id);
+        $category->update([
+            'title' => $request->title,
+        ]);
+
+        return redirect('/media/dashboard/program?id=' . $category->program_id);
+    }
 }
