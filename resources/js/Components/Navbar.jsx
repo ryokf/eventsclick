@@ -37,13 +37,13 @@ export function Navbar() {
                     ))
                 }
                 {/* <NavbarFB.Link>     */}
-                    <Dropdown className="border-none rounded-lg" label="Lainnya" >
-                        {
-                            program.map((item) => (
-                                <Dropdown.Item href="#" key={item}>{item.title}</Dropdown.Item>
-                            ))
-                        }
-                    </Dropdown>
+                <Dropdown className="border-none rounded-lg" label="Lainnya" >
+                    {
+                        program.map((item) => (
+                            <Dropdown.Item href="#" key={item}>{item.title}</Dropdown.Item>
+                        ))
+                    }
+                </Dropdown>
                 {/* </NavbarFB.Link> */}
             </NavbarFB.Collapse>
             {
@@ -80,28 +80,12 @@ export function Drawer() {
                             </div>
                         </form>
                     </DrawerFB.Items>
-                    <DrawerFB.Items>
-                        <hr className="border-gray-700 my-2" />
-                        <ul className="font-light font-sans text-right text-sm text-gray-700">
-                            <div className="my-4">
-
-                            {
-                                auth.user != null 
-                                ? <Link href="/logout" method="post" className="cursor-pointer text-white bg-red-500 font-bold p-2 rounded">Logout</Link>
-                                : <Link href="/login" className="cursor-pointer text-white font-bold bg-primary p-2 rounded">Login</Link>
-                            }
-                            </div>
-                            <a href="/media">
-                                <li>Tentang kami</li>
-                            </a>
-                            <a href="/media">
-                                <li>Media Partner</li>
-                            </a>
-                            <a href="/media">
-                                <li>Layanan ketentuan web</li>
-                            </a>
-                            
-                        </ul>
+                    <DrawerFB.Items className="my-3">
+                        {
+                            auth.user != null
+                                ? <Link href="/logout" method="post" className="cursor-pointer w-full block text-white bg-red-500 font-bold p-2 rounded-lg">Logout</Link>
+                                : <Link href="/login" className="cursor-pointer text-white  w-full  font-bold bg-primary p-2 rounded-lg">Login</Link>
+                        }
                     </DrawerFB.Items>
                 </div>
             </DrawerFB>

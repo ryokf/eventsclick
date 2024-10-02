@@ -23,14 +23,14 @@ export function Footer() {
                             <div>
                                 <FooterFB.Title className="!text-white" title="about" />
                                 <FooterFB.LinkGroup col className="!text-white">
-                                    <FooterFB.Link href="#">Tentang kami</FooterFB.Link>
+                                    <FooterFB.Link href="/media/about-us">Tentang kami</FooterFB.Link>
                                 </FooterFB.LinkGroup>
                             </div>
                             <div >
                                 <FooterFB.Title className="!text-white" title="Follow us" />
                                 <FooterFB.LinkGroup col className="!text-white">
-                                    <FooterFB.Link href="#">Instagram</FooterFB.Link>
-                                    <FooterFB.Link href="#">Youtube</FooterFB.Link>
+                                    <FooterFB.Link href="https://instagram.com/eventsclick">Instagram</FooterFB.Link>
+                                    <FooterFB.Link href="https://youtube.com/eventsclick">Youtube</FooterFB.Link>
                                 </FooterFB.LinkGroup>
                             </div>
                             <div>
@@ -46,8 +46,8 @@ export function Footer() {
                     <div className="w-full sm:flex sm:items-center sm:justify-between">
                         <FooterFB.Copyright href="#" by="Eventsclick" year={2024} className="!text-white" />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                            <FooterFB.Icon href="#" icon={BsInstagram} className="!text-white" />
-                            <FooterFB.Icon href="#" icon={BsYoutube} className="!text-white" />
+                            <FooterFB.Icon href="https://instagram.com/eventsclick" icon={BsInstagram} className="!text-white" />
+                            <FooterFB.Icon href="https://youtube.com/eventsclick" icon={BsYoutube} className="!text-white" />
 
                         </div>
                     </div>

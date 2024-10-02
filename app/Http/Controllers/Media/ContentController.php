@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Models\LikeContent;
 use App\Models\Program;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Inertia\Inertia;
 
 class ContentController extends Controller
 {
-    public function index(Request $request, Content $content, User $user, Program $program)
+    public function index(Request $request, Content $content, User $user, Program $program, LikeContent $likeContent)
     {
         $contents = $content->with('comments')->with('category')->find($request->query('id'));
 
@@ -20,7 +21,11 @@ class ContentController extends Controller
             $userComments[$id] = $user->find($value->user_id);
         }
 
-        return Inertia::render('Media/Content/index', compact('contents', 'userComments'));
+        $likeCount = $likeContent->where('content_id', $contents->id)->count() ?? 0;
+
+        $isLiked = $likeContent->where('user_id', auth()->user()->id)->where('content_id', $contents->id)->exists();
+
+        return Inertia::render('Media/Content/index', compact('contents', 'userComments', 'likeCount', 'isLiked'));
     }
 
     public function store(Request $request, Content $content)

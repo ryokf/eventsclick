@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->string('title', 50);
             $table->text('content');
-            $table->integer('likes')->default(0);
             $table->boolean('is_header_home')->default(false);
             $table->boolean('is_header_program')->default(false);
             $table->text('tags')->nullable();
