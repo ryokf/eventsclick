@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Media\CategoryController;
+use App\Http\Controllers\Media\CommentController;
 use App\Http\Controllers\Media\CompanyProfileController;
 use App\Http\Controllers\Media\ContentController;
 use App\Http\Controllers\Media\DashboardController;
@@ -30,6 +31,10 @@ Route::prefix('/media')->name('media.')->group(function () {
         // Route::get('/program/category/content', 'index')->name('content');
         Route::post('/content', 'store')->name('content.store');
         Route::put('/content/{id}', 'edit')->name('content.edit');
+    });
+
+    Route::controller(CommentController::class)->group(function () {
+        Route::post('/comment', 'store')->name('comment.store');
     });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');
