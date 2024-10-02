@@ -2,15 +2,31 @@ import GeneralLayout from '@/Layouts/GeneralLayout'
 import React from 'react'
 import { Breadcrumb, Button, Label, Select, Table, TextInput } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
+import { FaPlus } from "react-icons/fa";
+import { router, useForm } from '@inertiajs/react';
+import AddCategoryModal from './AddCategoryModal';
 
 const DetailProgram = ({ programs }) => {
-    console.log(programs)
+    // console.log(programs)
 
     const visibilityData = [
         { id: 1, name: 'visible' },
         { id: 2, name: 'archive' },
         { id: 3, name: 'hide' },
     ]
+
+    const { data, setData, post, processing, errors } = useForm({
+        title: programs.title,
+        description: programs.description,
+        visibility: programs.visibility,
+    })
+
+    console.log(data)
+
+    const editProgram = (e) => {
+        e.preventDefault();
+        router.put(`/media/program/${ programs.id }`, data);
+    }
 
     return (
         <GeneralLayout>
@@ -19,26 +35,26 @@ const DetailProgram = ({ programs }) => {
                     <Breadcrumb.Item href="/media/dashboard" icon={HiHome}>
                         Home
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item href="#">{programs.title.slice(0, 20)+"..."}</Breadcrumb.Item>
+                    <Breadcrumb.Item href="#">{programs.title.slice(0, 20) + "..."}</Breadcrumb.Item>
                 </Breadcrumb>
                 <form className="flex w-full flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="title" value="Title" />
                         </div>
-                        <TextInput id="title" type="text" value={programs.title} required />
+                        <TextInput id="title" type="text" value={data.title} onChange={(e) => setData('title', e.target.value)} required />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="description" value="Description" />
                         </div>
-                        <TextInput id="description" value={programs.description} type="text" required />
+                        <TextInput id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} type="text" required />
                     </div>
                     <div className="w-full">
                         <div className="mb-2 block">
                             <Label htmlFor="countries" value="visbilitas" />
                         </div>
-                        <Select id="countries" value={programs.visibility} required>
+                        <Select id="countries" value={data.visibility} onChange={(e) => setData('visibility', e.target.value)} required>
                             {
                                 visibilityData.map((item) => (
                                     <option key={item.id} value={item.name}>{item.name}</option>
@@ -47,13 +63,16 @@ const DetailProgram = ({ programs }) => {
                         </Select>
                     </div>
                     <div className="w-full flex justify-end">
-
-                    <Button type="submit" className="bg-[#fbbf24] w-1/5 !text-white">Edit</Button>
+                        <Button type="submit" disabled={processing} onClick={editProgram} className="bg-[#fbbf24] w-1/5 !text-white">Edit</Button>
                     </div>
                 </form>
-
+                <hr className="my-4" />
                 <div className="overflow-x-auto my-6">
-                    <h1 className="text-xl font-semibold mb-4">Daftar Katgori</h1>
+                    <div className="flex justify-between items-center">
+
+                        <h1 className="text-xl font-semibold mb-6">Daftar Katgori</h1>
+                        <AddCategoryModal program_id={programs.id}></AddCategoryModal>
+                    </div>
                     <Table striped>
                         <Table.Head>
                             <Table.HeadCell>No.</Table.HeadCell>

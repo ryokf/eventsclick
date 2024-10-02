@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Media\CategoryController;
 use App\Http\Controllers\Media\CompanyProfileController;
 use App\Http\Controllers\Media\ContentController;
 use App\Http\Controllers\Media\DashboardController;
 use App\Http\Controllers\Media\HomeController;
 use App\Http\Controllers\Media\ProgramController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/media')->name('media.')->group(function () {
@@ -15,6 +17,13 @@ Route::prefix('/media')->name('media.')->group(function () {
     Route::controller(ProgramController::class)->group(function () {
         Route::get('/program', 'index')->name('program');
         Route::post('/program', 'store')->name('program.store');
+        Route::put('/program/{id}', 'edit')->name('program.edit');
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        // Route::get('/program/category', 'index')->name('category');
+        Route::post('/category', 'store')->name('category.store');
+        Route::put('/program/category/{id}', 'edit')->name('category.edit');
     });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');

@@ -46,4 +46,21 @@ class ProgramController extends Controller
 
         return redirect('/media/dashboard');
     }
+
+    public function edit(Request $request, $id){
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'visibility' => 'required',
+        ]); 
+
+        $program = Program::find($id);
+        $program->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'visibility' => $request->visibility
+        ]);
+
+        return redirect('/media/dashboard');
+    }
 }
