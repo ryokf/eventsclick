@@ -19,11 +19,16 @@ const Dashboard = ({ programs, bgCover, headers }) => {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
                         {
+                            programs.length > 0 &&
                             programs.map((item, index) => (
                                 <CardDashboard key={item.id} id={item.id} title={item.title} image={imageToken(bgCover[index] === null ? defaultVideo : bgCover[index].url_video)}></CardDashboard>
                             ))
                         }
-                        <ProgramModal></ProgramModal>
+
+                        <div className={``}>
+                            <ProgramModal></ProgramModal>
+                        </div>
+
                     </div>
                 </div>
                 <div className="my-6">

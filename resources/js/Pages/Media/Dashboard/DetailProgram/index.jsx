@@ -68,11 +68,7 @@ const DetailProgram = ({ programs }) => {
                 </form>
                 <hr className="my-4" />
                 <div className="overflow-x-auto my-6">
-                    <div className="flex justify-between items-center">
-
-                        <h1 className="text-xl font-semibold mb-6">Daftar Katgori</h1>
-                        <AddCategoryModal program_id={programs.id}></AddCategoryModal>
-                    </div>
+                    <h1 className="text-xl font-semibold mb-6">Daftar Katgori</h1>
                     <Table striped>
                         <Table.Head>
                             <Table.HeadCell>No.</Table.HeadCell>
@@ -98,6 +94,9 @@ const DetailProgram = ({ programs }) => {
 
                         </Table.Body>
                     </Table>
+                    <div className="w-full flex justify-center mt-4">
+                        <AddCategoryModal program_id={programs.id}></AddCategoryModal>
+                    </div>
                 </div>
             </div>
         </GeneralLayout>
