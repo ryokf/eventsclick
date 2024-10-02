@@ -48,7 +48,7 @@ const Header = ({headers, title, description, categories}) => {
                 <div className="flex gap-2 overflow-x-scroll h-fit mt-4">
                     {
                         categories.map((item) => (
-                            <Button key={item.id} className="w-full items-center border-primary border" color="" size="xs" outline>
+                            <Button key={item.id} className="max-w-16 items-center border-primary border" color="" size="xs" outline>
                                 <span className="text-primary">{item.title}</span>
                             </Button>
                         ))
