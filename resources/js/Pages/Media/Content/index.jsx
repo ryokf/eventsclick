@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, TextInput } from 'flowbite-react';
 import ContentTile from '@/Components/ContentTile';
 import dateFormat from '@/helpers/dateFormat';
-import { router, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import imageToken from '@/helpers/imageToken';
 
@@ -52,9 +52,16 @@ const Header = ({id, title, category, created_at, comments, url_video, likeCount
             </div>
             <div className="text-gray-400 text-xs lg:text-base mt-2 flex gap-3">
                 <span> 
-                    <button className="transition hover:text-red-500" onClick={handleLike} type="button">
+                    <Link 
+                        href={`/media/like/content`} 
+                        method={isLiked ? 'delete' : 'post'} 
+                        data={{ user_id : auth.user.id, content_id : id }} 
+                        className="transition hover:text-red-500"
+                        only={["isLiked", "likeCount"]}
+                        preserveScroll
+                    >
                         { isLiked ? <MdFavorite className="text-red-500 inline text-xl" /> : <MdFavoriteBorder className="text-red-500 inline text-xl" /> }
-                    </button>
+                    </Link>
                     <span className="text-gray-400 text-xs lg:text-base">
                         {likeCount} suka
                     </span>
