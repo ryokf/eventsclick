@@ -18,7 +18,6 @@ class ProgramFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'cover' => $this->faker->imageUrl(300, 300, 'abstract'),
             'description' => $this->faker->paragraph,
             'visibility' => $this->faker->randomElement(['visible', 'hide', 'archive']),
         ];

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->text('cover')->nullable();
             $table->text('description')->nullable();
             $table->enum('visibility', ['visible', 'hide', 'archive']);
             $table->timestamps();

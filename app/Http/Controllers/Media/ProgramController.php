@@ -30,4 +30,20 @@ class ProgramController extends Controller
 
         return Inertia::render('Media/Program/index', compact('programDetail', 'categories', 'headers', 'latest'));
     }
+
+    public function store(Request $request, Program $program){
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'visibility' => 'required',
+        ]);
+
+        $program->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'visibility' => $request->visibility
+        ]);
+
+        return redirect('/media/dashboard');
+    }
 }

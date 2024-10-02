@@ -59,7 +59,6 @@ export function Navbar() {
 export function Drawer() {
     const [isOpen, setIsOpen] = useState(false);
     const { auth } = usePage().props
-    console.log(auth)
 
     const handleClose = () => setIsOpen(false);
 

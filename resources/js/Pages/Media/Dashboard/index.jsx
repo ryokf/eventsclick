@@ -4,8 +4,11 @@ import CardDashboard from '../../../Components/CardDashboard';
 import ContentTile from '@/Components/ContentTile';
 import ButtonNav from '../../../Components/ButtonNav';
 import imageToken from '@/helpers/imageToken';
+import ProgramModal from './ProgramModal';
+
 
 const Dashboard = ({ programs, bgCover, headers }) => {
+    const defaultVideo = `<iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw?si=u3WsfP0tFzkv7sVt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
     return (
         <GeneralLayout>
             <div className="w-11/12 lg:w-1/2 mx-auto ">
@@ -17,9 +20,10 @@ const Dashboard = ({ programs, bgCover, headers }) => {
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
                         {
                             programs.map((item, index) => (
-                                <CardDashboard key={item.id} id={item.id} title={item.title} image={imageToken(bgCover[index].url_video)}></CardDashboard>
+                                <CardDashboard key={item.id} id={item.id} title={item.title} image={imageToken(bgCover[index] === null ? defaultVideo : bgCover[index].url_video)}></CardDashboard>
                             ))
                         }
+                        <ProgramModal></ProgramModal>
                     </div>
                 </div>
                 <div className="my-6">
@@ -38,5 +42,7 @@ const Dashboard = ({ programs, bgCover, headers }) => {
         </GeneralLayout>
     )
 }
+
+
 
 export default Dashboard

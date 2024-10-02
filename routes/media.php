@@ -10,17 +10,24 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/media')->name('media.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/program', [ProgramController::class, 'index'])->name('program');
+    // Route::get('/program', [ProgramController::class, 'index'])->name('program');
+
+    Route::controller(ProgramController::class)->group(function () {
+        Route::get('/program', 'index')->name('program');
+        Route::post('/program', 'store')->name('program.store');
+    });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('/dashboard')->name('dashboard')->group(function () {
+        Route::get('', [DashboardController::class, 'index'])->name('');
 
-    Route::get('/dashboard/program', [DashboardController::class, 'program'])->name('dashboard.program');
+        Route::get('/program', [DashboardController::class, 'program'])->name('.program');
 
-    Route::get('/dashboard/program/category', [DashboardController::class, 'category'])->name('dashboard.category');
+        Route::get('/program/category', [DashboardController::class, 'category'])->name('.category');
 
-    Route::get('/dashboard/program/category/content', [DashboardController::class, 'content'])->name('dashboard.content');
+        Route::get('/program/category/content', [DashboardController::class, 'content'])->name('.content');
+    })->middleware('auth');
 
     Route::get('/about-us', [CompanyProfileController::class, 'AboutUs'])->name('about-us');
 });

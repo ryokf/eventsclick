@@ -46,7 +46,10 @@ const DetailProgram = ({ programs }) => {
                             }
                         </Select>
                     </div>
-                    <Button type="submit" className="bg-[#fbbf24] !text-white">Edit</Button>
+                    <div className="w-full flex justify-end">
+
+                    <Button type="submit" className="bg-[#fbbf24] w-1/5 !text-white">Edit</Button>
+                    </div>
                 </form>
 
                 <div className="overflow-x-auto my-6">

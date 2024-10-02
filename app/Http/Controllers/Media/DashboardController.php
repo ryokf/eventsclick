@@ -17,6 +17,10 @@ class DashboardController extends Controller
 {
     public function index(Program $program, Content $content)
     {
+        if (auth()->user() == null) {
+            return redirect('/');
+        }
+
         if(auth()->user()->is_admin == 0) {
             return redirect('/media');
         }

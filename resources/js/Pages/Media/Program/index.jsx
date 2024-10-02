@@ -6,11 +6,13 @@ import { Button } from 'flowbite-react'
 import React from 'react'
 
 const Program = ({programDetail, categories, headers, latest}) => {
+    const latestTest = Object.assign(latest)
+
     return (
         <GeneralLayout>
             <div className="lg:w-3/4 mx-auto overflow-x-hidden">
                 <Header headers={headers} title={programDetail.title} description={programDetail.description} categories={categories}></Header>
-                <ContentSection title={"latest"} contents={latest}></ContentSection>
+                {/* <ContentSection title={"latest"} contents={latestTest}></ContentSection> */}
                 {
                     categories.map((item) => (
                         item.contents.length > 0 &&
@@ -38,7 +40,7 @@ const Header = ({headers, title, description, categories}) => {
                 </div>
             </div> */}
             <div className="w-full h-full aspect-video">
-            <Carousel headers={headers}></Carousel>
+            <Carousel headers={headers} titleSize={"!text-2xl"} subTitleSize={"!text-sm"} aspectRatio={"!aspect-video"}></Carousel>
             </div>
             <div className="">
                 <h1 className="text-2xl font-semibold my-2 lg:text-5xl lg:font-bold">{title}</h1>
@@ -46,7 +48,7 @@ const Header = ({headers, title, description, categories}) => {
                 <div className="flex gap-2 overflow-x-scroll h-fit mt-4">
                     {
                         categories.map((item) => (
-                            <Button className="w-full items-center border-primary border" color="" size="xs" outline>
+                            <Button key={item.id} className="w-full items-center border-primary border" color="" size="xs" outline>
                                 <span className="text-primary">{item.title}</span>
                             </Button>
                         ))
@@ -68,8 +70,8 @@ const ContentSection = ({title, contents}) => {
             <div className="flex gap-4 justify-start overflow-x-scroll h-full">
                 {
                     contents.map((item) => (
-                        <div key={item} className="w-fit h-full">
-                            <ContentTile className='!w-44' key={item} id={item.id} title={item.title} category={item.category_id} created_at={item.created_at} url_video={item.url_video}/>
+                        <div key={item.id} className="w-fit h-full">
+                            <ContentTile className='!w-44' key={item.id} id={item.id} title={item.title} category={item.category_id} created_at={item.created_at} url_video={item.url_video}/>
                         </div>
                     ))
                 }
