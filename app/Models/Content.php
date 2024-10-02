@@ -9,7 +9,7 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_id', 'title', 'likes', 'is_header', 'tags', 'url_video'];
+    protected $fillable = ['category_id','content', 'title', 'likes', 'is_header_home', 'is_header_program', 'tags', 'url_video'];
 
     public function category()
     {

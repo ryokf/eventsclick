@@ -4,6 +4,7 @@ import { router, useForm } from '@inertiajs/react';
 import { Label, TextInput, Button, Breadcrumb } from 'flowbite-react'
 import React from 'react'
 import { HiHome } from "react-icons/hi";
+import AddContentModal from './AddContentModal';
 
 const DetailCategory = ({ categories, programTitle }) => {
     const { data, setData, post, processing, errors } = useForm({
@@ -42,6 +43,8 @@ const DetailCategory = ({ categories, programTitle }) => {
                                 <ContentTile href={`/media/dashboard/program/category/content?id=${ item.id }`} key={item.id} title={item.title} created_at={item.created_at} url_video={item.url_video}></ContentTile>
                             ))
                         }
+                        <AddContentModal category_id={categories.id}></AddContentModal>
+
                         {/* <ContentTile className='!w-44' title="Lorem ipsum dolor sit amet." category="Category" url_video="https://www.youtube.com/watch?v=5f4uLffQVHg"></ContentTile> */}
                     </div>
                 </div>

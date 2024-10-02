@@ -26,6 +26,12 @@ Route::prefix('/media')->name('media.')->group(function () {
         Route::put('/category/{id}', 'edit')->name('category.edit');
     });
 
+    Route::controller(ContentController::class)->group(function () {
+        // Route::get('/program/category/content', 'index')->name('content');
+        Route::post('/content', 'store')->name('content.store');
+        Route::put('/content/{id}', 'edit')->name('content.edit');
+    });
+
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');
 
     Route::prefix('/dashboard')->name('dashboard')->group(function () {

@@ -22,4 +22,57 @@ class ContentController extends Controller
 
         return Inertia::render('Media/Content/index', compact('contents', 'userComments'));
     }
+
+    public function store(Request $request, Content $content)
+    {
+        // dd($request->all()); 
+
+        $request->validate([
+            'title' => 'required',
+            'category_id' => 'required',
+            'content' => 'required',
+            'is_header_program' => 'required',
+            'is_header_home' => 'required',
+            'url_video' => 'required',
+        ]);
+
+        $content->create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'is_header_program' => $request->is_header_program,
+            'is_header_home' => $request->is_header_home,
+            'url_video' => $request->url_video,
+            'tags' => $request->tags
+        ]);
+
+        return redirect('/media/dashboard/program/category?id=' . $request->category_id);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'title' => 'required',
+            'category_id' => 'required',
+            'content' => 'required',
+            'is_header_program' => 'required',
+            'is_header_home' => 'required',
+            'url_video' => 'required',
+        ]);
+
+        $content = Content::find($id);
+        $content->update([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'is_header_program' => $request->is_header_program,
+            'is_header_home' => $request->is_header_home,
+            'url_video' => $request->url_video,
+            'tags' => $request->tags
+        ]); 
+
+        return redirect('/media/dashboard/program/category?id=' . $request->category_id);
+    }
 }
