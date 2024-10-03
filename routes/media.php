@@ -47,6 +47,7 @@ Route::prefix('/media')->name('media.')->group(function () {
         Route::get('/about-us', 'aboutUs')->name('about-us');
         Route::get('/policy', 'policy')->name('policy');
 
+        Route::put('/policy', 'policyEdit')->name('policy');
         Route::put('/about-us', 'aboutUsEdit')->name('about-us.update');
     });
 

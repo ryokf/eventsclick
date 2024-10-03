@@ -7,14 +7,14 @@ import React, { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-export function AboutUsSetting({content}) {
+export function PolicySetting({ content }) {
     const [openModal, setOpenModal] = useState(false);
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)} className="w-full h-full flex justify-center items-center bg-primary">Atur Tentang Kami</Button>
+            <Button onClick={() => setOpenModal(true)} className="w-full h-full flex justify-center items-center bg-primary">Atur Kebijakan Privasi</Button>
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header>Tentang kami</Modal.Header>
+                <Modal.Header>Kebijakan Privasi</Modal.Header>
                 <TextEditor content={content}></TextEditor>
             </Modal>
         </>
@@ -23,13 +23,12 @@ export function AboutUsSetting({content}) {
 
 function TextEditor(content) {
     const [value, setValue] = useState(content.content);
-    console.log(value)
 
     const submit = (e) => {
         e.preventDefault();
-        router.post('/media/about-us', {
+        router.post('/media/policy', {
             _method: 'PUT',
-            about_us: value
+            policy: value
         })
     }
 
@@ -47,7 +46,6 @@ function TextEditor(content) {
                 </Button>
             </Modal.Footer>
         </>
-
     )
 
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\CompanyProfile;
 use App\Models\Content;
 use App\Models\Program;
 use App\Models\User;
+use Faker\Provider\ar_EG\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +17,7 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function index(Program $program, Content $content)
+    public function index(Program $program, Content $content, CompanyProfile $companyProfile)
     {
         if (auth()->user() == null) {
             return redirect('/');
@@ -39,7 +41,9 @@ class DashboardController extends Controller
 
         $headers = $content->where('is_header_home', true)->with('comments')->limit(9)->get();
 
-        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers'));
+        $companyProfiles = $companyProfile->first();
+
+        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles'));
     }
 
     public function program(Request $request, Program $program)

@@ -27,11 +27,23 @@ class CompanyProfileController extends Controller
             'about_us' => $request->about_us,
         ]);
 
-        return Inertia::render('Media/CompanyProfile/AboutUs');
+        return redirect()->back();
     }
 
     public function policy()
     {
         return Inertia::render('Media/CompanyProfile/PolicyPage');
+    }
+
+    public function policyEdit(Request $request, CompanyProfile $companyProfile){
+        $request->validate([
+            'policy' => 'required',
+        ]);
+
+        $companyProfile->where('id', 1)->update([
+            'policy' => $request->policy,
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -6,15 +6,20 @@ import ButtonNav from '../../../Components/ButtonNav';
 import imageToken from '@/helpers/imageToken';
 import ProgramModal from './ProgramModal';
 import { AboutUsSetting } from './CompanyProfileSetting/AboutUsSetting';
+import { PolicySetting } from './CompanyProfileSetting/PolicySetting';
 
 
-const Dashboard = ({ programs, bgCover, headers }) => {
+const Dashboard = ({ programs, bgCover, headers, companyProfiles }) => {
     const defaultVideo = `<iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw?si=u3WsfP0tFzkv7sVt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+
+    console.log(companyProfiles)
+
     return (
         <GeneralLayout>
             <div className="w-11/12 lg:w-1/2 mx-auto ">
-            <div className="my-6 flex">
-                <AboutUsSetting></AboutUsSetting>
+            <div className="my-6 flex gap-4">
+                <AboutUsSetting content={companyProfiles.about_us}></AboutUsSetting>
+                <PolicySetting content={companyProfiles.policy}></PolicySetting>
             </div>
                 <div className="my-6">
                     <div className="w-full flex justify-between">
