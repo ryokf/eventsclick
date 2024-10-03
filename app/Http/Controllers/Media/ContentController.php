@@ -25,13 +25,35 @@ class ContentController extends Controller
 
         $isLiked = $likeContent->where('user_id', auth()->user()->id)->where('content_id', $contents->id)->exists();
 
-        return Inertia::render('Media/Content/index', compact('contents', 'userComments', 'likeCount', 'isLiked'));
+        $relatedContents = "";
+
+        $tags = explode(' ', $content->tags);
+        $relatedContents = Content::where('id', '!=', $content->id) // Hindari mengambil konten yang sama
+            ->where(function ($query) use ($content, $tags) {
+                // Cari berdasarkan title
+                $query->where('title', $content->title);
+
+                // Buat variabel untuk menghitung jumlah kecocokan tag
+                foreach ($tags as $tag) {
+                    $query->orWhere('tags', 'LIKE', '%' . $tag . '%');
+                }
+            })
+            // Menghitung jumlah kecocokan tags
+            ->selectRaw('*, (
+            (CASE WHEN title = ? THEN 1 ELSE 0 END) + ' . implode(' + ', array_map(function ($tag) {
+                return "(CASE WHEN tags LIKE '%$tag%' THEN 1 ELSE 0 END)";
+            }, $tags)) . ') as match_count', [$content->title])
+            // Urutkan berdasarkan jumlah kecocokan, dari yang paling banyak
+            ->orderBy('match_count', 'desc')
+            // Batasi hasil hanya 12 data
+            ->limit(12)
+            ->get();
+
+        return Inertia::render('Media/Content/index', compact('contents', 'userComments', 'likeCount', 'isLiked', 'relatedContents'));
     }
 
     public function store(Request $request, Content $content)
     {
-        // dd($request->all()); 
-
         $request->validate([
             'title' => 'required',
             'category_id' => 'required',
@@ -76,7 +98,7 @@ class ContentController extends Controller
             'is_header_home' => $request->is_header_home,
             'url_video' => $request->url_video,
             'tags' => $request->tags
-        ]); 
+        ]);
 
         return redirect('/media/dashboard/program/category?id=' . $request->category_id);
     }

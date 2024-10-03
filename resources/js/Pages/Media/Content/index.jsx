@@ -7,15 +7,15 @@ import { Link, router, usePage } from '@inertiajs/react';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import imageToken from '@/helpers/imageToken';
 
-const Content = ({ contents, userComments, likeCount, isLiked }) => {
-    // console.log(relatedContents)
+const Content = ({ contents, userComments, likeCount, isLiked, relatedContents}) => {
+    console.log(relatedContents)
     return (
         <GeneralLayout>
             <div className="lg:w-1/2 mx-auto">
                 <Header id={contents.id} title={contents.title} category={contents.category.title} created_at={contents.created_at} comments={contents.comments} url_video={contents.url_video} likeCount={likeCount} isLiked={isLiked}></Header>
                 <ContentSection content={contents.content}></ContentSection>
                 <CommentSection comments={contents.comments} userComments={userComments} content_id={contents.id}></CommentSection>
-                {/* <RelatedContent relatedContents={relatedContents}></RelatedContent> */}
+                <RelatedContent relatedContents={relatedContents}></RelatedContent>
             </div>
         </GeneralLayout>
     )
@@ -27,21 +27,6 @@ const Header = ({id, title, category, created_at, comments, url_video, likeCount
 
     let image_id = imageToken(url_video);
 
-    const handleLike = (e) => {
-        e.preventDefault();
-        if (isLiked) {
-            router.post(`/media/like/content`, {
-                _method: 'delete',
-                user_id : auth.user.id,
-                content_id : id
-            })
-        } else {
-            router.post(`/media/like/content`, {
-                user_id : auth.user.id,
-                content_id : id
-            })
-        }
-    }
     return (
         <div className="w-full p-4 my-4">
             <p className="text-sm lg:text-base text-primary leading-none">{category}</p>
@@ -132,7 +117,7 @@ const RelatedContent = ({ relatedContents }) => {
             <div className="grid grid-cols-2 gap-3 lg:gap-5 lg:grid-cols-3 w-full">
                 {
                     relatedContents.map((item) => (
-                        <ContentTile key={item} />
+                        <ContentTile href={`/media/program/content?id=${item.id}`} id={item.id} title={item.title} category={item.category} created_at={item.created_at} image={item.image} url_video={item.url_video} key={item.id}/>
                     ))
                 }
             </div>

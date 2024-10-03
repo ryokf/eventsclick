@@ -84,7 +84,7 @@ export function Drawer() {
                         {
                             auth.user != null
                                 ? <Link href="/logout" method="post" className="cursor-pointer w-full block text-white bg-red-500 font-bold p-2 rounded-lg">Logout</Link>
-                                : <Link href="/login" className="cursor-pointer text-white  w-full  font-bold bg-primary p-2 rounded-lg">Login</Link>
+                                : <Link href="/login" method="get" className="cursor-pointer w-full block text-white bg-primary font-bold  p-2 rounded-lg">Login</Link>
                         }
                     </DrawerFB.Items>
                 </div>

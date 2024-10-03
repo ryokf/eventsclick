@@ -5,6 +5,7 @@ import ContentTile from '@/Components/ContentTile';
 import ButtonNav from '../../../Components/ButtonNav';
 import imageToken from '@/helpers/imageToken';
 import ProgramModal from './ProgramModal';
+import { AboutUsSetting } from './CompanyProfileSetting/AboutUsSetting';
 
 
 const Dashboard = ({ programs, bgCover, headers }) => {
@@ -12,10 +13,13 @@ const Dashboard = ({ programs, bgCover, headers }) => {
     return (
         <GeneralLayout>
             <div className="w-11/12 lg:w-1/2 mx-auto ">
+            <div className="my-6 flex">
+                <AboutUsSetting></AboutUsSetting>
+            </div>
                 <div className="my-6">
                     <div className="w-full flex justify-between">
                         <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar program</h1>
-                        <ButtonNav href={`/media/dashboard/program`}></ButtonNav>
+                        {/* <ButtonNav href={`/media/dashboard/program`}></ButtonNav> */}
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
                         {
@@ -30,6 +34,9 @@ const Dashboard = ({ programs, bgCover, headers }) => {
                         </div>
 
                     </div>
+                </div>
+                <div className="">
+
                 </div>
                 <div className="my-6">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Header</h1>

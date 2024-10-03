@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\CompanyProfile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -31,13 +32,18 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'), // password
         ]);
 
-        // \App\Models\User::factory(10)->create();
-        \App\Models\Program::factory(1)->create();
-        // \App\Models\Category::factory(50)->create();
-        // \App\Models\Content::factory(200)->create();
-        // \App\Models\Comment::factory(50)->create();
-        // \App\Models\Quiz::factory(40)->create();
-        // \App\Models\QuizOption::factory(120)->create();
-        // \App\Models\Story::factory(20)->create();
+        CompanyProfile::create([
+            'about_us' => "",
+            'policy' => "",
+        ]);
+
+        \App\Models\User::factory(10)->create();
+        \App\Models\Program::factory(5)->create();
+        \App\Models\Category::factory(50)->create();
+        \App\Models\Content::factory(200)->create();
+        \App\Models\Comment::factory(50)->create();
+        \App\Models\Quiz::factory(40)->create();
+        \App\Models\QuizOption::factory(120)->create();
+        \App\Models\Story::factory(20)->create();
     }
 }

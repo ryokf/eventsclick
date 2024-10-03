@@ -43,6 +43,13 @@ Route::prefix('/media')->name('media.')->group(function () {
         Route::delete('/like/content', 'destroy')->name('like.destroy.content');
     });
 
+    Route::controller(CompanyProfileController::class)->group(function () {
+        Route::get('/about-us', 'aboutUs')->name('about-us');
+        Route::get('/policy', 'policy')->name('policy');
+
+        Route::put('/about-us', 'aboutUsEdit')->name('about-us.update');
+    });
+
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');
 
     Route::prefix('/dashboard')->name('dashboard')->group(function () {
@@ -55,5 +62,7 @@ Route::prefix('/media')->name('media.')->group(function () {
         Route::get('/program/category/content', [DashboardController::class, 'content'])->name('.content');
     })->middleware('auth');
 
-    Route::get('/about-us', [CompanyProfileController::class, 'AboutUs'])->name('about-us');
+    // Route::get('/about-us', [CompanyProfileController::class, 'aboutUs'])->name('about-us');
+    // Route::get('/policy', [CompanyProfileController::class, 'policy'])->name('about-us');
+
 });
