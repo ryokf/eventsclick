@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\CompanyProfile;
 use App\Models\Content;
 use App\Models\Program;
+use App\Models\Quiz;
+use App\Models\Story;
 use App\Models\User;
 use Faker\Provider\ar_EG\Company;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function index(Program $program, Content $content, CompanyProfile $companyProfile)
+    public function index(Program $program, Content $content, CompanyProfile $companyProfile, Story $story, Quiz $quiz)
     {
         if (auth()->user() == null) {
             return redirect('/');
@@ -43,7 +45,10 @@ class DashboardController extends Controller
 
         $companyProfiles = $companyProfile->first();
 
-        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles'));
+        $stories = $story->orderBy('created_at', 'desc')->get();
+        // dd($stories);
+
+        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles', 'stories'));
     }
 
     public function program(Request $request, Program $program)

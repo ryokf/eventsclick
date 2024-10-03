@@ -13,7 +13,6 @@ import { IoPerson } from "react-icons/io5";
 export function Navbar() {
     const { program } = usePage().props
 
-
     const getProgram = program.map((item) => [item.id, item.title, item.visibility])
 
     const url = window.location.href

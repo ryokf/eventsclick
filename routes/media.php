@@ -8,6 +8,7 @@ use App\Http\Controllers\Media\DashboardController;
 use App\Http\Controllers\Media\HomeController;
 use App\Http\Controllers\Media\LikeContentController;
 use App\Http\Controllers\Media\ProgramController;
+use App\Http\Controllers\Media\StoryController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,12 @@ Route::prefix('/media')->name('media.')->group(function () {
 
         Route::put('/policy', 'policyEdit')->name('policy');
         Route::put('/about-us', 'aboutUsEdit')->name('about-us.update');
+    });
+
+    Route::controller(StoryController::class)->group(function () {
+        Route::get('/story', 'index')->name('story');
+        Route::post('/story', 'store')->name('story.store');
+        Route::put('/story/{id}', 'edit')->name('story.edit');
     });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');

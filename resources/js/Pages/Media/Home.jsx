@@ -64,7 +64,7 @@ const StorySection = ({ stories }) => {
                         <div className="w-full h-full" key={item.id}>
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-                                <TikTokEmbed url="https://www.tiktok.com/@epicgardening/video/7055411162212633903" width={325} />
+                                <TikTokEmbed url={item.url_video} width={315} height={720} />
 
                             </div>
                         </div>

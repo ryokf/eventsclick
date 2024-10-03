@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->text('image');
             $table->text('url_video');
             $table->timestamps();
         });
