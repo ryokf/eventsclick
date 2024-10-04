@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('quiz_options', function (Blueprint $table) {
             $table->id();
             $table->foreignId('quiz_id')->constrained('quizzes');
-            $table->string('answers', 100);
+            $table->string('answers', 100)->nullable();
             $table->boolean('is_true');
             $table->timestamps();
         });

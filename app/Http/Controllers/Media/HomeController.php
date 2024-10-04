@@ -7,6 +7,7 @@ use App\Models\Content;
 use App\Models\Program;
 use App\Models\Quiz;
 use App\Models\Story;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -17,6 +18,18 @@ class HomeController extends Controller
         $programs = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->get();
         $stories = $story->orderBy('created_at', 'desc')->take(8)->get();
         $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->take(8)->get();
+
+        return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes'));
+    }
+
+    
+    public function search(Request $request, Content $content, Program $program, Story $story, Quiz $quiz)
+    {
+        $search = $request->query('search');
+        $headers = $content->where('is_header_home', true)->with('comments')->where('title', 'LIKE', "%$search%")->limit(9)->get();
+        $programs = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->where('title', 'LIKE', "%$search%")->get();
+        $stories = $story->orderBy('created_at', 'desc')->where('title', 'LIKE', "%$search%")->take(8)->get();
+        $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->where('title', 'LIKE', "%$search%")->take(8)->get();
 
         return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes'));
     }

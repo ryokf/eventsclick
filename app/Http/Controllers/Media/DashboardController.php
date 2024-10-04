@@ -46,9 +46,10 @@ class DashboardController extends Controller
         $companyProfiles = $companyProfile->first();
 
         $stories = $story->orderBy('created_at', 'desc')->get();
-        // dd($stories);
+        
+        $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->get();
 
-        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles', 'stories'));
+        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles', 'stories', 'quizzes'));
     }
 
     public function program(Request $request, Program $program)

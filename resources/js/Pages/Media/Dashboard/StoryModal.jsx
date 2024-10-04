@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 export function StoryModal() {
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
     const [title, setTitle] = useState('');
     const [urlVideo, setUrlVideo] = useState('');
 
@@ -22,7 +22,7 @@ export function StoryModal() {
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)} size="xs" className="bg-primary !text-white mb-2 flex items-center justify-center">Tambah Story</Button>
+            <Button onClick={() => setOpenModal(true)} size="sm" className="bg-primary !text-white mb-2 flex items-center justify-center">Tambah Story</Button>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
                 <Modal.Header>Tambah Story</Modal.Header>
                 <Modal.Body>

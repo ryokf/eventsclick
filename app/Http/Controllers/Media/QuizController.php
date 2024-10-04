@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
+use App\Models\Quiz;
+use App\Models\QuizOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,27 +12,26 @@ class QuizController extends Controller
 {
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validasi input
-        $validated = $request->validate([
-            'question' => 'required|string|max:50',
-            'image' => 'nullable|string',
-            'options' => 'required|array',
-            'options.*.answers' => 'required|string|max:50',
-            'options.*.is_true' => 'required|boolean',
+
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'question' => 'required',
+            'answers' => 'required', // At least 4 answers // Each answer is required
         ]);
 
-        // Memasukkan kuis ke dalam tabel 'quizes'
-        $quizId = DB::table('quizes')->insertGetId([
-            'question' => $validated['question'],
-            'image' => $validated['image'],
+        // Create the quiz question
+        $quiz = Quiz::create([
+            'question' => $validatedData['question'],
         ]);
 
-        // Memasukkan opsi-opsi kuis ke dalam tabel 'quiz_options'
-        foreach ($validated['options'] as $option) {
-            DB::table('quiz_options')->insert([
-                'quiz_id' => $quizId,
-                'answers' => $option['answers'],
-                'is_true' => $option['is_true'],
+        // Loop through the answers and store them
+        foreach ($validatedData['answers'] as $answer) {
+            QuizOption::create([
+                'quiz_id' => $quiz->id,
+                'is_true' => false,
+                'answers' => $answer,
             ]);
         }
 

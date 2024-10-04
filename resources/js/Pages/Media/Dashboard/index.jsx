@@ -9,12 +9,14 @@ import { AboutUsSetting } from './CompanyProfileSetting/AboutUsSetting';
 import { PolicySetting } from './CompanyProfileSetting/PolicySetting';
 import { Table } from 'flowbite-react';
 import { StoryModal } from './StoryModal';
+import { PollingCard } from '@/Components/PollingCard';
+import { QuizModal } from './QuizModal';
 
 
-const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories }) => {
+const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizzes }) => {
     const defaultVideo = `<iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw?si=u3WsfP0tFzkv7sVt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
 
-    console.log(stories)
+    console.log(quizzes)
 
     return (
         <GeneralLayout>
@@ -59,7 +61,10 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories }) => 
                 </div>
                 <div className="my-6">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Stories</h1>
-                    <StoryModal></StoryModal>
+                    <div className="flex justify-between">
+                        <StoryModal></StoryModal>
+                        <ButtonNav></ButtonNav>
+                    </div>
                     <div className="">
                         <Table striped>
                             <Table.Head>
@@ -88,6 +93,22 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories }) => 
                                 </Table.Row> */}
                             </Table.Body>
                         </Table>
+                    </div>
+                </div>
+                <div className="">
+                    <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Polling</h1>
+                    <div className="flex w-full justify-between">
+                        <QuizModal></QuizModal>
+                        <ButtonNav></ButtonNav>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                        {
+                            quizzes.map((item, index) => (
+                                <PollingCard key={item.id} question={item.question} image={item.image} options={item.options}></PollingCard>
+                            ))
+                        }
+
                     </div>
                 </div>
             </div>
