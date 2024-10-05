@@ -7,15 +7,13 @@ import React from 'react'
 import GeneralLayout from '../../Layouts/GeneralLayout';
 import { InstagramEmbed, TikTokEmbed } from 'react-social-media-embed';
 
-const Home = ({ headers, programs, stories, quizzes }) => {
+const Home = ({ headers, programs, stories, quizzes, quizzesWithVoteCounts }) => {
+    console.log(quizzesWithVoteCounts)
     return (
         <GeneralLayout>
             <div className="px-4 lg:w-10/12 mx-auto lg:px-10 pt-6 h-60 lg:h-fit">
                 <Carousel headers={headers}></Carousel>
             </div>
-            {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <TikTokEmbed url="https://www.tiktok.com/@epicgardening/video/7055411162212633903" width={325} />
-</div> */}
             <div className="mx-4 lg:w-10/12 lg:px-10 lg:mx-auto my-10">
                 {
                     programs.map((item) => (
@@ -27,7 +25,7 @@ const Home = ({ headers, programs, stories, quizzes }) => {
                 <StorySection stories={stories}></StorySection>
             </div>
             <div className="mx-4 lg:mx-20 my-10">
-                <PollingSection quizzes={quizzes}></PollingSection>
+                <PollingSection quizzes={quizzesWithVoteCounts}></PollingSection>
             </div>
         </GeneralLayout>
     )
@@ -84,9 +82,9 @@ const PollingSection = ({ quizzes }) => {
             </div>
             <div className="flex gap-4 overflow-x-scroll h-fit">
                 {
-                    quizzes.map((item) => (
+                    quizzes.map((item, index) => (
                         <div className="w-full h-full" key={item.id}>
-                            <PollingCard question={item.question} image={item.image} options={item.options}></PollingCard>
+                            <PollingCard question={item.quiz.question} options={quizzes[index].voteCounts}></PollingCard>
                         </div>
                     ))
                 }

@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\CompanyProfile;
 use App\Models\User;
+use App\Models\UserOptionQuiz;
+use App\Models\UserQuizOption;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -45,5 +47,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Quiz::factory(40)->create();
         \App\Models\QuizOption::factory(120)->create();
         \App\Models\Story::factory(20)->create();
+        UserQuizOption::factory(100)->create();
     }
 }

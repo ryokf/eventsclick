@@ -11,8 +11,6 @@ export function Carousel({ headers, titleSize, subTitleSize, aspectRatio }) {
             <CarouselFB indicators={!isMobile} className="">
                 {
                     headers.map((content) => {
-                    
-                        console.log(content)
                         let image_id = content.url_video.split(" ")[3];
                         image_id = image_id.split("/")[4];
                         image_id = image_id.split("?")[0];

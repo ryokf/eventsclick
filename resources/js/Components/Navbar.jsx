@@ -6,7 +6,7 @@ import { useState } from "react";
 import { HiEnvelope } from "react-icons/hi2";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { IoPerson } from "react-icons/io5";
 
@@ -58,8 +58,17 @@ export function Navbar() {
 export function Drawer() {
     const [isOpen, setIsOpen] = useState(false);
     const { auth } = usePage().props
+    const [search, setSearch] = useState('')
 
     const handleClose = () => setIsOpen(false);
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+
+        router.get('/media/search', {
+            search: search
+        })
+    }
 
     return (
         <>
@@ -75,7 +84,7 @@ export function Drawer() {
                     <DrawerFB.Items>
                         <form action="#">
                             <div className="mb-6 mt-3">
-                                <TextInput id="email" name="email" placeholder="tulis yang ingin anda cari..." type="text" />
+                                <TextInput id="email" name="email" placeholder="tulis yang ingin anda cari..." type="text" value={search} onChange={(event) => setSearch(event.target.value)} onKeyDownCapture={(e) => e.key === 'Enter' ? handleSearch(e) : null}/>
                             </div>
                         </form>
                     </DrawerFB.Items>

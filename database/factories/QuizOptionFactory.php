@@ -18,7 +18,7 @@ class QuizOptionFactory extends Factory
     {
         return [
             'quiz_id' => $this->faker->numberBetween(1, 40), // related to quiz table
-            'answers' => $this->faker->sentence(4),
+            'answers' => $this->faker->sentence(3),
             'is_true' => $this->faker->boolean,
         ];
     }
