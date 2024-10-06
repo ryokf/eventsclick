@@ -10,6 +10,9 @@ const ContentTile = ({ className = "", href, title, category = "", created_at, u
     image_id = image_id.split("/")[4];
     image_id = image_id.split("?")[0];
 
+    url_video = url_video.replace("560", "100%")
+    url_video = url_video.replace("315", "100%")
+
     return (
         <div className="">
             <div style={{ backgroundImage: `url(https://i.ytimg.com/vi/${ image_id }/maxresdefault.jpg)` }} className={`bg-cover w-full aspect-video rounded-lg overflow-hidden ${ className }`}>
@@ -34,7 +37,7 @@ export function VideoModal({ url_video }) {
             </Button>
             <Flowbite theme={{ theme: theme }}>
 
-                <Modal className="!rounded-xl" size={'7xl'} dismissible show={openModal} onClose={() => setOpenModal(false)}>
+                <Modal className="" size={'7xl'} dismissible show={openModal} onClose={() => setOpenModal(false)}>
                     <Modal.Header className="header bg-transparent"></Modal.Header>
                     <button onClick={() => setOpenModal(false)} className="flex bg-transparent justify-center items-center w-full h-screen">
                         {
@@ -49,9 +52,9 @@ export function VideoModal({ url_video }) {
 
 const theme = {modal: {
     "root": {
-        "base": "fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full",
+        "base": "fixed bg-transparent inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full",
         "show": {
-            "on": "flex bg-gray-900 bg-opacity-50 dark:bg-opacity-80",
+            "on": "flex bg-gray-900 bg-opacity-80 dark:bg-opacity-80 ",
             "off": "hidden"
         },
         "sizes": {
@@ -64,7 +67,7 @@ const theme = {modal: {
             "4xl": "max-w-4xl",
             "5xl": "max-w-5xl",
             "6xl": "max-w-6xl",
-            "7xl": "max-w-xl"
+            "7xl": "max-w-7xl"
         },
         "positions": {
             "top-left": "items-start justify-start",
@@ -79,20 +82,20 @@ const theme = {modal: {
         }
     },
     "content": {
-        "base": "relative h-full w-full p-4 md:h-auto",
-        "inner": "relative flex max-h-[90dvh] flex-col rounded-lg bg-white shadow dark:bg-gray-700"
+        "base": "relative h-full w-full p-4 md:h-auto !bg-transparent",
+        "inner": "relative bg-transparent flex max-h-[90dvh] flex-col rounded-lg shadow dark:bg-gray-700"
     },
     "body": {
-        "base": "flex-1 overflow-auto p-6",
+        "base": "bg-transparent flex-1 overflow-auto p-6",
         "popup": "pt-0"
     },
     "header": {
-        "base": "flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600",
+        "base": "flex bg-transparent items-start justify-between rounded-t p-5 dark:border-gray-600",
         "popup": "border-b-0 p-2",
         "title": "text-xl font-medium text-gray-900 dark:text-white",
         "close": {
-            "base": "ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
-            "icon": "h-5 w-5"
+            "base": "ml-auto inline-flex items-center rounded-lg p-1.5 text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
+            "icon": "h-10 w-10"
         }
     },
     "footer": {
