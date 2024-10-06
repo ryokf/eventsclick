@@ -45,14 +45,14 @@ const Header = ({headers, title, description, categories}) => {
             <div className="">
                 <h1 className="text-2xl font-semibold my-2 lg:text-5xl lg:font-bold">{title}</h1>
                 <p className="text-sm lg:text-lg text-gray-400 leading-tight tracking-tight">{description}</p>
-                <div className="flex gap-2 overflow-x-scroll h-fit mt-4">
-                    {
+                <div className="flex gap-2 overflow-x-scroll h-fit mt-4 no-scrollbar">
+                    {/* {
                         categories.map((item) => (
-                            <Button key={item.id} className="max-w-16 items-center border-primary border" color="" size="xs" outline>
+                            <Button key={item.id} className="max-w-16 items-center border-primary border " color="" size="xs" outline>
                                 <span className="text-primary">{item.title}</span>
                             </Button>
                         ))
-                    }
+                    } */}
                 </div>
             </div>
         </div>
@@ -65,9 +65,9 @@ const ContentSection = ({title, contents}) => {
         <div className="my-8 mx-4">
             <div className="flex justify-between w-full">
                 <h1 className="text-xl font-semibold mb-2">{title}</h1>
-                <ButtonNav></ButtonNav>
+                {/* <ButtonNav></ButtonNav> */}
             </div>
-            <div className="flex gap-4 justify-start overflow-x-scroll h-full">
+            <div className="flex gap-4 justify-start overflow-x-scroll h-full no-scrollbar">
                 {
                     contents.map((item) => (
                         <div key={item.id} className="w-fit h-full">

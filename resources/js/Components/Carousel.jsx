@@ -22,7 +22,7 @@ export function Carousel({ headers, titleSize, subTitleSize, aspectRatio }) {
                                         <h1 className={`font-semibold lg:text-6xl lg:font-bold text-white mb-1 ${titleSize}`}>{content.title}</h1>
                                         <p className={`text-xs lg:text-lg text-gray-300 leading-none ${subTitleSize}`}>{content.content.slice(0, isMobile ? 50 : 110)}</p>
                                         <div className={`flex w-full gap-3 lg:text-lg text-gray-300 text-xs mt-1 ${subTitleSize}`}>
-                                            <p>{content.likes} suka</p> <p> {Object.keys(content.comments).length} komentar </p> <p>{dateFormat(content.created_at)}</p>
+                                            <p>{content.likes ?? 0} suka</p> <p> {Object.keys(content.comments).length} komentar </p> <p>{dateFormat(content.created_at)}</p>
                                         </div>
                                     </div>
                                 </div>

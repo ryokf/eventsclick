@@ -14,6 +14,11 @@ class ContentController extends Controller
 {
     public function index(Request $request, Content $content, User $user, Program $program, LikeContent $likeContent)
     {
+        if (!auth()->check()) {
+            return Inertia::location(route('login'));
+        }
+        
+
         $contents = $content->with('comments')->with('category')->find($request->query('id'));
 
         $userComments = [];

@@ -8,7 +8,6 @@ import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import imageToken from '@/helpers/imageToken';
 
 const Content = ({ contents, userComments, likeCount, isLiked, relatedContents}) => {
-    console.log(relatedContents)
     return (
         <GeneralLayout>
             <div className="lg:w-1/2 mx-auto">

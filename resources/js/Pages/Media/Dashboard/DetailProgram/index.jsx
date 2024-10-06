@@ -6,8 +6,8 @@ import { FaPlus } from "react-icons/fa";
 import { router, useForm } from '@inertiajs/react';
 import AddCategoryModal from './AddCategoryModal';
 
-const DetailProgram = ({ programs }) => {
-    // console.log(programs)
+const DetailProgram = ({ programs, headers }) => {
+    console.log(headers)
 
     const visibilityData = [
         { id: 1, name: 'visible' },

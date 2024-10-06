@@ -14,7 +14,7 @@ class CompanyProfileController extends Controller
     {
         $data = $companyProfile->select('about_us')->where('id', 1)->first();
 
-        return Inertia::render('Media/CompanyProfile/AboutUs', compact('data'));
+        return view('about', compact('data'));
     }
 
     public function aboutUsEdit(Request $request, CompanyProfile $companyProfile){
@@ -30,9 +30,11 @@ class CompanyProfileController extends Controller
         return redirect()->back();
     }
 
-    public function policy()
+    public function policy(CompanyProfile $companyProfile)
     {
-        return Inertia::render('Media/CompanyProfile/PolicyPage');
+        $data = $companyProfile->select('policy')->where('id', 1)->first();
+
+        return view('policy', compact('data'));
     }
 
     public function policyEdit(Request $request, CompanyProfile $companyProfile){

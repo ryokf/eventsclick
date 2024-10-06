@@ -25,7 +25,7 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                     <AboutUsSetting content={companyProfiles.about_us}></AboutUsSetting>
                     <PolicySetting content={companyProfiles.policy}></PolicySetting>
                 </div>
-                <div className="my-6">
+                <div className="my-8">
                     <div className="w-full flex justify-between">
                         <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar program</h1>
                         {/* <ButtonNav href={`/media/dashboard/program`}></ButtonNav> */}
@@ -47,7 +47,7 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                 <div className="">
 
                 </div>
-                <div className="my-6">
+                <div className="my-8">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Header</h1>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                         {
@@ -59,17 +59,16 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                         {/* <ContentTile className='!w-44' title="Lorem ipsum dolor sit amet." category="Category" url_video="https://www.youtube.com/watch?v=5f4uLffQVHg"></ContentTile> */}
                     </div>
                 </div>
-                <div className="my-6">
+                <div className="my-8">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Stories</h1>
                     <div className="flex justify-between">
                         <StoryModal></StoryModal>
-                        <ButtonNav></ButtonNav>
                     </div>
                     <div className="">
                         <Table striped>
                             <Table.Head>
                                 <Table.HeadCell>#</Table.HeadCell>
-                                <Table.HeadCell>Judul</Table.HeadCell>
+                                <Table.HeadCell>Tags</Table.HeadCell>
                                 <Table.HeadCell>Link</Table.HeadCell>
                             </Table.Head>
                             <Table.Body className="divide-y">
@@ -95,11 +94,10 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                         </Table>
                     </div>
                 </div>
-                <div className="">
+                <div className="my-8 mb-20">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Polling</h1>
                     <div className="flex w-full justify-between">
                         <QuizModal></QuizModal>
-                        <ButtonNav></ButtonNav>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
 

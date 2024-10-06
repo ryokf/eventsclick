@@ -8,6 +8,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -34,10 +36,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // dd(Auth::user());
-
         if (Auth::user()->is_admin) {
-            return redirect()->route('media.dashboard');
+            return redirect('/media/dashboard');
         }
 
         return redirect()->route('media.home');

@@ -18,12 +18,12 @@ const DetailCategory = ({ categories, programTitle }) => {
 
     return (
         <GeneralLayout>
-            <div className="w-11/12 mx-auto my-6 lg:w-1/2 lg:border rounded-lg lg:p-4">
+            <div className="w-11/12 mx-auto my-6 lg:w-1/2 lg:border rounded-lg lg:p-4 min-h-[600px]">
                 <Breadcrumb className="mb-4" aria-label="Default breadcrumb example">
-                    <Breadcrumb.Item href="/media/dashboard" icon={HiHome}>
+                    <Breadcrumb.Item href={`/media/dashboard`} icon={HiHome}>
                         Home
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item href="#">{programTitle.slice(0, 10) + "..."}</Breadcrumb.Item>
+                    <Breadcrumb.Item href={`/media/dashboard/program?id=${categories.program_id}`}>{programTitle.slice(0, 10) + "..."}</Breadcrumb.Item>
                     <Breadcrumb.Item href="#">{categories.title}</Breadcrumb.Item>
                 </Breadcrumb>
                 <form className="flex max-w-md flex-col gap-1 gap-x-4 mb-6 lg:grid lg:grid-cols-3">

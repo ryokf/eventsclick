@@ -35,16 +35,12 @@ class HomeController extends Controller
             ];
         }
 
-        // dd($voteCounts);
-
         return Inertia::render('Media/Home', compact('headers', 'programs', 'stories', 'quizzes', 'quizzesWithVoteCounts'));
     }
 
     
     public function search(Request $request, Content $content, Program $program, Story $story, Quiz $quiz)
     {
-        // dd($request->all());
-
         $search = $request->query('search');
         $programs = $program->with('contents')->orderBy('created_at', 'desc')->where('visibility', 'visible')->where('title', 'LIKE', "%$search%")->get();
         $stories = $story->orderBy('created_at', 'desc')->where('title', 'LIKE', "%$search%")->get();

@@ -10,13 +10,14 @@ use App\Http\Controllers\Media\LikeContentController;
 use App\Http\Controllers\Media\ProgramController;
 use App\Http\Controllers\Media\QuizController;
 use App\Http\Controllers\Media\StoryController;
+use App\Http\Controllers\Media\UserQuizOptionController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/media')->name('media.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/search', [HomeController::class, 'search'])->name('home.search');
-    
+
     // Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
     Route::controller(ProgramController::class)->group(function () {
@@ -61,7 +62,17 @@ Route::prefix('/media')->name('media.')->group(function () {
     });
 
     Route::controller(QuizController::class)->group(function () {
+        Route::get('/quiz', 'index')->name('quiz');
         Route::post('/quiz', 'store')->name('quiz.store');
+    });
+
+    Route::controller(UserQuizOptionController::class)->group(function () {
+
+        Route::post('/quiz/option', 'store')->name('quiz.option.store');
+    });
+
+    Route::controller(StoryController::class)->group(function () {
+        Route::get('/stories', 'index')->name('story.index');
     });
 
     Route::get('/program/content', [ContentController::class, 'index'])->name('content');

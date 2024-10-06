@@ -56,7 +56,13 @@ class DashboardController extends Controller
     {
         $programs = $program->with('categories')->find($request->query('id'));
 
-        return Inertia::render('Media/Dashboard/DetailProgram/index', compact('programs'));
+        $headers = $programs->with('contents')->get();
+
+        $headers = $headers->map(function ($header) {
+            return $header->contents->where('is_header_program', true)->first();
+        });
+
+        return Inertia::render('Media/Dashboard/DetailProgram/index', compact('programs', 'headers'));
     }
 
     public function category(Request $request, Program $program, Category $category)

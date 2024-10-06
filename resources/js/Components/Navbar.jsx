@@ -3,12 +3,9 @@
 
 import { Button, Navbar as NavbarFB, Drawer as DrawerFB, Label, Textarea, TextInput, Dropdown } from "flowbite-react";
 import { useState } from "react";
-import { HiEnvelope } from "react-icons/hi2";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
-import { IoPerson } from "react-icons/io5";
 
 export function Navbar() {
     const { program } = usePage().props
@@ -32,14 +29,14 @@ export function Navbar() {
                 {
                     getProgram.map((item, index) => (
                         item[2] === 'visible' &&
-                        <NavbarFB.Link href="#" className="text-white hover:bg-white/50 border-none rounded-lg flex items-center h-full" key={item}>{item[1]} </NavbarFB.Link>
+                        <NavbarFB.Link href={`/media/program?id=${item[0]}`} className="text-white hover:bg-white/50 border-none rounded-lg flex items-center h-full" key={item}>{item[1]} </NavbarFB.Link>
                     ))
                 }
                 {/* <NavbarFB.Link>     */}
                 <Dropdown className="border-none rounded-lg" label="Lainnya" >
                     {
                         program.map((item) => (
-                            <Dropdown.Item href="#" key={item}>{item.title}</Dropdown.Item>
+                            <Dropdown.Item href={`/media/program?id=${item.id}`} key={item}>{item.title}</Dropdown.Item>
                         ))
                     }
                 </Dropdown>
@@ -92,7 +89,12 @@ export function Drawer() {
                         {
                             auth.user != null
                                 ? <Link href="/logout" method="post" className="cursor-pointer w-full block text-white bg-red-500 font-bold p-2 rounded-lg">Logout</Link>
-                                : <Link href="/login" method="get" className="cursor-pointer w-full block text-white bg-primary font-bold  p-2 rounded-lg">Login</Link>
+
+                                : 
+                                <div className="flex items-center justify-center gap-4">
+                                    <Link href="/register" method="get" className="cursor-pointer w-full block text-white bg-primary font-bold  p-2 rounded-lg">Register</Link>
+                                    <Link href="/login" method="get" className="cursor-pointer w-full block text-white bg-primary font-bold  p-2 rounded-lg">Login</Link>
+                                </div>
                         }
                     </DrawerFB.Items>
                 </div>

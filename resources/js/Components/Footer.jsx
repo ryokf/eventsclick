@@ -19,11 +19,12 @@ export function Footer() {
                                 className=""
                             />
                         </div>
-                        <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+                        <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-2 sm:gap-6">
                             <div>
-                                <FooterFB.Title className="!text-white" title="about" />
+                                <FooterFB.Title className="!text-white" title="Legal" />
                                 <FooterFB.LinkGroup col className="!text-white">
                                     <FooterFB.Link href="/media/about-us">Tentang kami</FooterFB.Link>
+                                    <FooterFB.Link href="/media/policy">Kebijakan layanan web</FooterFB.Link>
                                 </FooterFB.LinkGroup>
                             </div>
                             <div >
@@ -31,13 +32,6 @@ export function Footer() {
                                 <FooterFB.LinkGroup col className="!text-white">
                                     <FooterFB.Link href="https://instagram.com/eventsclick">Instagram</FooterFB.Link>
                                     <FooterFB.Link href="https://youtube.com/eventsclick">Youtube</FooterFB.Link>
-                                </FooterFB.LinkGroup>
-                            </div>
-                            <div>
-                                <FooterFB.Title title="Legal" className="!text-white" />
-                                <FooterFB.LinkGroup col className="!text-white">
-                                    <FooterFB.Link href="#">Privacy Policy</FooterFB.Link>
-                                    <FooterFB.Link href="#">Terms &amp; Conditions</FooterFB.Link>
                                 </FooterFB.LinkGroup>
                             </div>
                         </div>

@@ -46,14 +46,12 @@ const StorySection = ({ stories }) => {
         <div className="my-8 lg:my-20 lg:mx-auto">
             <h1 className="text-xl lg:text-3xl lg:mb-6 font-semibold mb-2">Stories</h1>
 
-            <div className="flex gap-4 overflow-x-scroll h-fit">
+            <div className="gap-x-2 gap-y-8 w-full grid grid-cols-1 lg:grid-cols-4">
                 {
                     stories.map((item) => (
                         <div className="w-fit h-fit" key={item.id}>
                             <div style={{ display: 'flex ', justifyContent: 'center' }}>
-
                                 <TikTokEmbed url={item.url_video} width={315} height={720} />
-
                             </div>
                         </div>
                     ))

@@ -38,8 +38,8 @@ const DetailContent = ({ contents, programTitle, categoryTitle }) => {
                     <Breadcrumb.Item href="/media/dashboard" icon={HiHome}>
                         Home
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item href="#">{programTitle.slice(0, 6) + "..."}</Breadcrumb.Item>
-                    <Breadcrumb.Item href="#">{categoryTitle.title.slice(0, 6) + "..."}</Breadcrumb.Item>
+                    <Breadcrumb.Item href={`/media/dashboard/program/category?id=${contents.category_id}`}>{programTitle.slice(0, 6) + "..."}</Breadcrumb.Item>
+                    <Breadcrumb.Item href={`/media/dashboard/program/category?id=${contents.category_id}`}>{categoryTitle.title.slice(0, 6) + "..."}</Breadcrumb.Item>
                     <Breadcrumb.Item href="#">{contents.title.slice(0, 10) + "..."}</Breadcrumb.Item>
                 </Breadcrumb>
                 <form className="flex w-10/12 flex-col gap-4">
