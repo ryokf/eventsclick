@@ -4,24 +4,28 @@ import { Link, router } from "@inertiajs/react";
 import { Card, Radio } from "flowbite-react";
 import { useState } from "react";
 
-export function PollingCard({id, question, image, options, created_at }) {
+export function PollingCard({ id, question, image, options, created_at }) {
     console.log(id)
     const [answered, setAnswered] = useState(() => {
-        const data = localStorage.getItem(`${question}-polling`);
+        const data = localStorage.getItem(`${ question }-polling`);
         return data ? JSON.parse(data) : "";
     })
     const [allAnswered, setAllAnswered] = useState(() => {
-        const data = localStorage.getItem(`${question}-polling-all`);
+        const data = localStorage.getItem(`${ question }-polling-all`);
         return data ? JSON.parse(data) : "";
     })
 
+
     const voter = options.reduce((prev, curr) => prev + curr.votes, 0);
+
+    const is_dashboard = window.location.href.split("/")[4] === 'dashboard';
+    console.log(is_dashboard)
 
     const submit = (e, id) => {
         e.preventDefault();
         setAllAnswered(id);
-        localStorage.setItem(`${question}-polling`, JSON.stringify(answered));
-        localStorage.setItem(`${question}-polling-all`, JSON.stringify(allAnswered));
+        localStorage.setItem(`${ question }-polling`, JSON.stringify(answered));
+        localStorage.setItem(`${ question }-polling-all`, JSON.stringify(allAnswered));
     }
 
     return (
@@ -42,15 +46,19 @@ export function PollingCard({id, question, image, options, created_at }) {
                 {
                     options.map((item, index) => (
                         item.answers != null &&
-                        <PollingOption id={id} idAnswer={item.id} onClick={() => setAnswered(index)} answered={answered === index} allAnswered={allAnswered} voter_count={item.votes} answer={item.answers} key={item.id} />
+                        <PollingOption is_dashboard={is_dashboard} id={id} idAnswer={item.id} onClick={() => is_dashboard ? (e) => { e.preventDefault()} : setAnswered(index)} answered={answered === index} allAnswered={allAnswered} voter_count={item.votes} answer={item.answers} key={item.id} />
                     ))
                 }
             </button>
+            {
+                is_dashboard &&
+                <Link href={`/media/quiz/${ id }`} method="delete" className="w-full gap-2 text-xs  p-2 mt-3 rounded-lg bg-red-500 flex items-center justify-center text-white" data={{ id: id }}>Hapus</Link>
+            }
         </div>
     );
 }
 
-const PollingOption = ({id,idAnswer, answer, answered, voter_count, onClick, allAnswered }) => {
+const PollingOption = ({ id, idAnswer, answer, answered, voter_count, onClick, allAnswered, is_dashboard }) => {
     const [voter, setVoter] = useState(voter_count)
 
     const submit = (e, id) => {
@@ -59,7 +67,7 @@ const PollingOption = ({id,idAnswer, answer, answered, voter_count, onClick, all
     }
 
     return (
-        <Link onClick={submit} href="/media/quiz/option" method="post" preserveScroll data={{ user_id : 1, quiz_option_id : idAnswer }} className={`w-full gap-2 text-xs text-start p-2 mb-3 rounded-lg border border-primary flex items-center justify-between ${answered ? 'bg-primary text-white' : 'text-gray-700'}`}>
+        <Link onClick={is_dashboard ? (e) => { e.preventDefault(); } : submit} href="/media/quiz/option" method="post" preserveScroll data={{ user_id: 1, quiz_option_id: idAnswer }} className={`w-full gap-2 text-xs text-start p-2 mb-3 rounded-lg border border-primary flex items-center justify-between ${ answered && !is_dashboard ? 'bg-primary text-white' : 'text-gray-700' }`}>
             <div className="">{answer}</div>
             {
                 allAnswered == id &&

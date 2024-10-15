@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -34,6 +35,14 @@ class CategoryController extends Controller
             'title' => $request->title,
         ]);
 
+        return redirect('/media/dashboard/program?id=' . $category->program_id);
+    }
+
+    public function destroy($id, Category $category, Content $content){
+        $content->where('category_id', $id)->delete();
+
+        $category = $category->find($id);
+        $category->delete();
         return redirect('/media/dashboard/program?id=' . $category->program_id);
     }
 }

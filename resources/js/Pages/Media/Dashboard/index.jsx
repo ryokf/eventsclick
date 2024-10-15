@@ -11,12 +11,15 @@ import { Table } from 'flowbite-react';
 import { StoryModal } from './StoryModal';
 import { PollingCard } from '@/Components/PollingCard';
 import { QuizModal } from './QuizModal';
+import { Link } from '@inertiajs/react';
+import dateFormat from '@/helpers/dateFormat';
+import { HeaderModal } from './HeaderModal';
 
 
-const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizzes }) => {
+const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizzes, contents }) => {
     const defaultVideo = `<iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw?si=u3WsfP0tFzkv7sVt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
 
-    console.log(quizzes)
+    // console.log(contents)
 
     return (
         <GeneralLayout>
@@ -49,13 +52,16 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                 </div>
                 <div className="my-8">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Header</h1>
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
                         {
                             headers.map((item, index) => (
                                 index < 8 &&
-                                <ContentTile key={item.id} title={item.title} created_at={item.created_at} url_video={item.url_video}></ContentTile>
+                                <ContentTile href={`/media/dashboard/program/category/content?id=${item.id}`} key={item.id} title={item.title} created_at={item.created_at} url_video={item.url_video}></ContentTile>
                             ))
                         }
+                        <div className="grid grid-rows-4">
+                            {/* <HeaderModal contents={contents}></HeaderModal> */}
+                        </div>
                         {/* <ContentTile className='!w-44' title="Lorem ipsum dolor sit amet." category="Category" url_video="https://www.youtube.com/watch?v=5f4uLffQVHg"></ContentTile> */}
                     </div>
                 </div>
@@ -70,6 +76,8 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                                 <Table.HeadCell>#</Table.HeadCell>
                                 <Table.HeadCell>Tags</Table.HeadCell>
                                 <Table.HeadCell>Link</Table.HeadCell>
+                                <Table.HeadCell>Aksi</Table.HeadCell>
+
                             </Table.Head>
                             <Table.Body className="divide-y">
                                 {
@@ -81,6 +89,7 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                                             </Table.Cell>
                                             <Table.Cell>{item.title}</Table.Cell>
                                             <Table.Cell><a className='text-primary' href={item.url_video} target="_blank">{item.url_video} </a></Table.Cell>
+                                            <Table.Cell><Link className='bg-red-500 text-white px-2 py-1 rounded text-sm' href={`/media/story/${ item.id }`} method='delete'>Hapus</Link></Table.Cell>
                                         </Table.Row>
                                     ))
                                 }
@@ -103,7 +112,9 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
 
                         {
                             quizzes.map((item, index) => (
-                                <PollingCard key={item.id} question={item.question} image={item.image} options={item.options}></PollingCard>
+                                <div className="w-full h-full" key={item.id}>
+                                    <PollingCard id={item.quiz.id} question={item.quiz.question} options={quizzes[index].voteCounts} created_at={dateFormat(item.quiz.created_at)}></PollingCard>
+                                </div>
                             ))
                         }
 

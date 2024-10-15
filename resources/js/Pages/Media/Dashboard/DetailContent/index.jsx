@@ -4,7 +4,7 @@ import { Breadcrumb, Button, Label, Textarea, TextInput } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import imageToken from '@/helpers/imageToken';
 import Checkbox from '@/Components/Checkbox';
-import { router, useForm } from '@inertiajs/react';
+import { Link, router, useForm } from '@inertiajs/react';
 
 
 const DetailContent = ({ contents, programTitle, categoryTitle }) => {
@@ -25,7 +25,7 @@ const DetailContent = ({ contents, programTitle, categoryTitle }) => {
     }, [data.url_video]);
 
     console.log(data)
-    
+
     const submit = (e) => {
         e.preventDefault();
         router.put('/media/content/' + contents.id, data)
@@ -81,6 +81,7 @@ const DetailContent = ({ contents, programTitle, categoryTitle }) => {
                         <Label htmlFor="is_header_program">Gunakan untuk header program</Label>
                     </div>
                     <Button onClick={submit} type="submit" className="bg-[#fbbf24] !text-white">Edit</Button>
+                    <Link href={`/media/content/${contents.id}`} method='delete' className="bg-red-500 !text-white flex items-center justify-center w-full rounded-md p-2">Hapus</Link>
                 </form>
             </div>
         </GeneralLayout>

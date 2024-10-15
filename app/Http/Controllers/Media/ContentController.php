@@ -17,7 +17,7 @@ class ContentController extends Controller
         if (!auth()->check()) {
             return Inertia::location(route('login'));
         }
-        
+
 
         $contents = $content->with('comments')->with('category')->find($request->query('id'));
 
@@ -106,5 +106,20 @@ class ContentController extends Controller
         ]);
 
         return redirect('/media/dashboard/program/category?id=' . $request->category_id);
+    }
+
+    public function destroy($id, Content $content)
+    {
+        $contents = $content->find($id);
+        $categoryId = $contents->category_id;
+        $contents->delete();
+        return redirect('/media/dashboard/program/category?id=' . $categoryId);
+    }
+
+    public function setHeader(Request $request, Content $content){
+        dd($request->all());
+        // $content->where('category_id', $request->category_id)->update(['is_header_program' => false]);
+        // $content->where('id', $request->id)->update(['is_header_program' => true]);
+        // return redirect('/media/dashboard');
     }
 }

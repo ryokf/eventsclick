@@ -3,8 +3,10 @@ import React from 'react'
 import { Breadcrumb, Button, Label, Select, Table, TextInput } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
-import { router, useForm } from '@inertiajs/react';
+import { Link, router, useForm } from '@inertiajs/react';
 import AddCategoryModal from './AddCategoryModal';
+import ContentTile from '@/Components/ContentTile';
+import imageToken from '@/helpers/imageToken';
 
 const DetailProgram = ({ programs, headers }) => {
     console.log(headers)
@@ -20,8 +22,6 @@ const DetailProgram = ({ programs, headers }) => {
         description: programs.description,
         visibility: programs.visibility,
     })
-
-    console.log(data)
 
     const editProgram = (e) => {
         e.preventDefault();
@@ -67,6 +67,18 @@ const DetailProgram = ({ programs, headers }) => {
                     </div>
                 </form>
                 <hr className="my-4" />
+                <div className="">
+                    <h1 className="text-xl font-semibold mb-6">Daftar Headers</h1>
+                    <div className="grid grid-cols-3 gap-4">
+                        {
+                            headers.contents.map((item, index) => (
+                                item.is_header_program === 1 &&
+                                <ContentTile href={`/media/program/content?id=${ item.id }`} id={item.id} title={item.title} category={item.category} created_at={item.created_at} url_video={item.url_video} key={item.id} />
+                            ))
+                        }
+                    </div>
+                </div>
+                <hr className="my-4" />
                 <div className="overflow-x-auto my-6">
                     <h1 className="text-xl font-semibold mb-6">Daftar Katgori</h1>
                     <Table striped>
@@ -84,9 +96,13 @@ const DetailProgram = ({ programs, headers }) => {
                                         <Table.Cell>{index + 1}</Table.Cell>
                                         <Table.Cell>{category.title}</Table.Cell>
                                         <Table.Cell>
-                                            <a href={`/media/dashboard/program/category?id=${ category.id }`} className="font-medium bg-primary text-white px-3 py-1 rounded hover:underline dark:text-cyan-500">
-                                                detail
-                                            </a>
+                                            <div className="flex gap-2">
+
+                                                <a href={`/media/dashboard/program/category?id=${ category.id }`} className="font-medium bg-primary text-white px-3 py-1 rounded hover:underline dark:text-cyan-500">
+                                                    detail
+                                                </a>
+                                                <Link href={`/media/category/${ category.id }`} method='delete' className='font-medium bg-red-500 text-white px-3 py-1 rounded hover:underline dark:text-cyan-500'>hapus</Link>
+                                            </div>
                                         </Table.Cell>
                                     </Table.Row>
                                 ))

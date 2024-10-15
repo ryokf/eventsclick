@@ -60,4 +60,13 @@ class QuizController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id, Quiz $quiz, QuizOption $quizOption)
+    {
+        $quiz = $quiz->find($id);
+        $quizOption->where('quiz_id', $quiz->id)->delete();
+
+        $quiz->delete();
+        return redirect('/media/dashboard');
+    }
 }

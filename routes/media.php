@@ -30,12 +30,15 @@ Route::prefix('/media')->name('media.')->group(function () {
         // Route::get('/program/category', 'index')->name('category');
         Route::post('/category', 'store')->name('category.store');
         Route::put('/category/{id}', 'edit')->name('category.edit');
+        Route::delete('/category/{id}', 'destroy')->name('category.destroy');
     });
 
     Route::controller(ContentController::class)->group(function () {
         // Route::get('/program/category/content', 'index')->name('content');
         Route::post('/content', 'store')->name('content.store');
         Route::put('/content/{id}', 'edit')->name('content.edit');
+        Route::delete('/content/{id}', 'destroy')->name('content.destroy');
+        Route::put('/content/set-header', 'setHeader')->name('content.set-header');
     });
 
     Route::controller(CommentController::class)->group(function () {
@@ -59,11 +62,14 @@ Route::prefix('/media')->name('media.')->group(function () {
         Route::get('/story', 'index')->name('story');
         Route::post('/story', 'store')->name('story.store');
         Route::put('/story/{id}', 'edit')->name('story.edit');
+        Route::delete('/story/{id}', 'destroy')->name('story.destroy');
     });
 
     Route::controller(QuizController::class)->group(function () {
         Route::get('/quiz', 'index')->name('quiz');
         Route::post('/quiz', 'store')->name('quiz.store');
+        Route::put('/quiz/{id}', 'edit')->name('quiz.edit');
+        Route::delete('/quiz/{id}', 'destroy')->name('quiz.destroy');
     });
 
     Route::controller(UserQuizOptionController::class)->group(function () {

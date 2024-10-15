@@ -25,7 +25,7 @@ class DashboardController extends Controller
             return redirect('/');
         }
 
-        if(auth()->user()->is_admin == 0) {
+        if (auth()->user()->is_admin == 0) {
             return redirect('/media');
         }
 
@@ -46,21 +46,33 @@ class DashboardController extends Controller
         $companyProfiles = $companyProfile->first();
 
         $stories = $story->orderBy('created_at', 'desc')->get();
-        
-        $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->get();
 
-        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles', 'stories', 'quizzes'));
+        $quizzes = $quiz->with('options')->orderBy('created_at', 'desc')->get();
+        $quizzesWithVoteCounts = [];
+        foreach ($quizzes as $quiz) {
+            $voteCounts = DB::table('quiz_options')
+                ->leftJoin('user_quiz_options', 'quiz_options.id', '=', 'user_quiz_options.quiz_option_id')
+                ->where('quiz_options.quiz_id', $quiz->id)
+                ->select('quiz_options.id', 'quiz_options.answers', DB::raw('COUNT(user_quiz_options.id) as votes'))
+                ->groupBy('quiz_options.id', 'quiz_options.answers')
+                ->get();
+
+            $quizzesWithVoteCounts[] = [
+                'quiz' => $quiz,
+                'voteCounts' => $voteCounts,
+            ];
+        }
+        $quizzes = $quizzesWithVoteCounts;
+
+        $contents = $content->where('is_header_home', false)->orderBy('created_at', 'desc')->get();
+        return Inertia::render('Media/Dashboard/index', compact('programs', 'bgCover', 'headers', 'companyProfiles', 'stories', 'quizzes', 'contents'));
     }
 
     public function program(Request $request, Program $program)
     {
         $programs = $program->with('categories')->find($request->query('id'));
 
-        $headers = $programs->with('contents')->get();
-
-        $headers = $headers->map(function ($header) {
-            return $header->contents->where('is_header_program', true)->first();
-        });
+        $headers = $program->where('id', $request->query('id'))->with('contents')->first();
 
         return Inertia::render('Media/Dashboard/DetailProgram/index', compact('programs', 'headers'));
     }
