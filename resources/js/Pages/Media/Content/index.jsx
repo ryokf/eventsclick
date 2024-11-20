@@ -1,7 +1,7 @@
 import GeneralLayout from '@/Layouts/GeneralLayout'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'flowbite-react';
-import ContentTile from '@/Components/ContentTile';
+import ContentTile, { VideoModal } from '@/Components/ContentTile';
 import dateFormat from '@/helpers/dateFormat';
 import { Link, router, usePage } from '@inertiajs/react';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
@@ -26,20 +26,27 @@ const Header = ({id, title, category, created_at, comments, url_video, likeCount
 
     let image_id = imageToken(url_video);
 
+    image_id = url_video.split(" ")[3];
+    image_id = image_id.split("/")[4];
+    image_id = image_id.split("?")[0];
+
+    url_video = url_video.replace("560", "100%")
+    url_video = url_video.replace("315", "100%")
+
     return (
         <div className="w-full p-4 my-4">
             <p className="text-sm lg:text-base text-primary leading-none">{category}</p>
             <h1 className="text-2xl lg:text-4xl font-semibold my-1">{title}</h1>
-            <p className="text-xs lg:text-base text-gray-400 leading-none">{dateFormat(created_at)}</p>
-            <div className="rounded-lg overflow-hidden mt-4">
-                <img src={`https://i.ytimg.com/vi/${ image_id }/maxresdefault.jpg`} alt="" />
+            <p className="text-xs lg:text-base text-gray-400 leading-none mb-4">{dateFormat(created_at)}</p>
+            <div style={{ backgroundImage: `url(https://i.ytimg.com/vi/${ image_id }/maxresdefault.jpg)` }} className={`bg-cover w-full aspect-video rounded-lg overflow-hidden`}>
+                <VideoModal url_video={url_video} />
             </div>
             <div className="text-gray-400 text-xs lg:text-base mt-2 flex gap-3">
-                <span> 
-                    <Link 
-                        href={`/media/like/content`} 
-                        method={isLiked ? 'delete' : 'post'} 
-                        data={{ user_id : auth.user.id, content_id : id }} 
+                <span>
+                    <Link
+                        href={`/media/like/content`}
+                        method={isLiked ? 'delete' : 'post'}
+                        data={{ user_id : auth.user.id, content_id : id }}
                         className="transition hover:text-red-500"
                         only={["isLiked", "likeCount"]}
                         preserveScroll
@@ -69,7 +76,7 @@ const ContentSection = ({ content }) => {
 const CommentSection = ({ comments, userComments, content_id }) => {
     const [newComment, setNewComment] = useState("");
     const { auth } = usePage().props;
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         router.post('/media/comment', {
