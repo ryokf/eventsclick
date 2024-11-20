@@ -6,14 +6,16 @@ import dateFormat from '@/helpers/dateFormat';
 import { Link, router, usePage } from '@inertiajs/react';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import imageToken from '@/helpers/imageToken';
+import Login from '../../../../../vendor/laravel/breeze/stubs/inertia-react-ts/resources/js/Pages/Auth/Login';
 
 const Content = ({ contents, userComments, likeCount, isLiked, relatedContents}) => {
+    const { auth } = usePage().props;
     return (
         <GeneralLayout>
             <div className="lg:w-1/2 mx-auto">
                 <Header id={contents.id} title={contents.title} category={contents.category.title} created_at={contents.created_at} comments={contents.comments} url_video={contents.url_video} likeCount={likeCount} isLiked={isLiked}></Header>
                 <ContentSection content={contents.content}></ContentSection>
-                <CommentSection comments={contents.comments} userComments={userComments} content_id={contents.id}></CommentSection>
+                <CommentSection is_login={auth.user} comments={contents.comments} userComments={userComments} content_id={contents.id}></CommentSection>
                 <RelatedContent relatedContents={relatedContents}></RelatedContent>
             </div>
         </GeneralLayout>
@@ -43,7 +45,9 @@ const Header = ({id, title, category, created_at, comments, url_video, likeCount
             </div>
             <div className="text-gray-400 text-xs lg:text-base mt-2 flex gap-3">
                 <span>
-                    <Link
+                    {
+                        auth.user != null &&
+                        <Link
                         href={`/media/like/content`}
                         method={isLiked ? 'delete' : 'post'}
                         data={{ user_id : auth.user.id, content_id : id }}
@@ -52,7 +56,7 @@ const Header = ({id, title, category, created_at, comments, url_video, likeCount
                         preserveScroll
                     >
                         { isLiked ? <MdFavorite className="text-red-500 inline text-xl" /> : <MdFavoriteBorder className="text-red-500 inline text-xl" /> }
-                    </Link>
+                    </Link>}
                     <span className="text-gray-400 text-xs lg:text-base">
                         {likeCount} suka
                     </span>
@@ -73,7 +77,7 @@ const ContentSection = ({ content }) => {
     )
 }
 
-const CommentSection = ({ comments, userComments, content_id }) => {
+const CommentSection = ({ comments, userComments, content_id, is_login }) => {
     const [newComment, setNewComment] = useState("");
     const { auth } = usePage().props;
 
@@ -107,9 +111,13 @@ const CommentSection = ({ comments, userComments, content_id }) => {
             {
                 comments.map((i, k) => <CommentCard key={i} username={userComments[k].name} comment={i.comment} />)
             }
+            {
+                !is_login &&
+                <div className="text-xl lg:text-2xl font-semibold mb-2 text-center w-full">silahkan <span><Link href="/login" className="underline">Login</Link></span> untuk berkomentar</div>
+            }
             <div className="flex w-full items-baseline gap-2">
-                <TextInput placeholder="Tulis komentar..." className="mt-6 w-full" onChange={(e) => setNewComment(e.target.value)} value={newComment}></TextInput>
-                <Button type="submit" onClick={handleSubmit} className="bg-primary">Kirim</Button>
+                <TextInput disabled={!is_login} placeholder="Tulis komentar..." className="mt-6 w-full" onChange={(e) => setNewComment(e.target.value)} value={newComment}></TextInput>
+                <Button disabled={!is_login} type="submit" onClick={handleSubmit} className="bg-primary">Kirim</Button>
             </div>
         </div>
     )

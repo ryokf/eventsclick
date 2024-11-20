@@ -14,10 +14,12 @@ class ContentController extends Controller
 {
     public function index(Request $request, Content $content, User $user, Program $program, LikeContent $likeContent)
     {
+        $is_login = true;
         if (!auth()->check()) {
-            return Inertia::location(route('login'));
-        }
+            // return Inertia::location(route('login'));
 
+            $is_login = false;
+        }
 
         $contents = $content->with('comments')->with('category')->find($request->query('id'));
 
@@ -28,7 +30,7 @@ class ContentController extends Controller
 
         $likeCount = $likeContent->where('content_id', $contents->id)->count() ?? 0;
 
-        $isLiked = $likeContent->where('user_id', auth()->user()->id)->where('content_id', $contents->id)->exists();
+        $isLiked = $is_login ? $likeContent->where('user_id', auth()->user()->id)->where('content_id', $contents->id)->exists() : false;
 
         $relatedContents = "";
 
