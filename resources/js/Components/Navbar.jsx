@@ -93,7 +93,7 @@ export function Drawer() {
                                 <div className="">
                                     {
                                         is_admin &&
-                                        <Link href="/dashboard" className="cursor-pointer w-full block text-white bg-primary font-bold p-2 rounded-lg mb-2">Dashboard</Link>
+                                        <Link href="/media/dashboard" className="cursor-pointer w-full block text-white bg-primary font-bold p-2 rounded-lg mb-2">Dashboard</Link>
                                     }
                                     <Link href="/logout" method="post" className="cursor-pointer w-full block text-white bg-red-500 font-bold p-2 rounded-lg">Logout</Link>
                                 </div>
