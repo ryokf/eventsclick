@@ -21,14 +21,18 @@ class ContentController extends Controller
             $is_login = false;
         }
 
-        $contents = $content->with('comments')->with('category')->find($request->query('id'));
+        $contents = $content->with('comments')->with('category')->where('slug', $request->query('slug'))->first();
+
+        // dd($content->where('slug', $request->query('slug'))->first());
 
         $userComments = [];
-        foreach ($contents->comments as $id => $value) {
-            $userComments[$id] = $user->find($value->user_id);
+        if ($contents !== null) {
+            foreach ($contents->comments as $id => $value) {
+                $userComments[$id] = $user->find($value->user_id);
+            }
         }
 
-        $likeCount = $likeContent->where('content_id', $contents->id)->count() ?? 0;
+        $likeCount = $contents ? $likeContent->where('content_id', $contents->id)->count() : 0;
 
         $isLiked = $is_login ? $likeContent->where('user_id', auth()->user()->id)->where('content_id', $contents->id)->exists() : false;
 

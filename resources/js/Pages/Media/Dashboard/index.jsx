@@ -23,17 +23,14 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
 
     return (
         <GeneralLayout>
-            <div className="w-11/12 lg:w-1/2 mx-auto ">
-                <div className="my-6 flex gap-4">
-                    <AboutUsSetting content={companyProfiles.about_us}></AboutUsSetting>
-                    <PolicySetting content={companyProfiles.policy}></PolicySetting>
-                </div>
+            <div className="w-11/12 lg:w-10/12 mx-auto ">
+
                 <div className="my-8">
                     <div className="w-full flex justify-between">
                         <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar program</h1>
                         {/* <ButtonNav href={`/media/dashboard/program`}></ButtonNav> */}
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 ">
                         {
                             programs.length > 0 &&
                             programs.map((item, index) => (
@@ -52,11 +49,11 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                 </div>
                 <div className="my-8">
                     <h1 className="text-xl lg:text-3xl font-semibold mb-2">Daftar Header</h1>
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 ">
                         {
                             headers.map((item, index) => (
                                 index < 8 &&
-                                <ContentTile href={`/media/dashboard/program/category/content?id=${item.id}`} key={item.id} title={item.title} created_at={item.created_at} url_video={item.url_video}></ContentTile>
+                                <ContentTile href={`/media/dashboard/program/category/content?id=${ item.id }`} key={item.id} title={item.title} created_at={item.created_at} url_video={item.url_video}></ContentTile>
                             ))
                         }
                         <div className="grid grid-rows-4">
@@ -118,6 +115,13 @@ const Dashboard = ({ programs, bgCover, headers, companyProfiles, stories, quizz
                             ))
                         }
 
+                    </div>
+                </div>
+                <div className="my-8">
+                    <h1 className="text-xl lg:text-3xl font-semibold mb-2">Footer section</h1>
+                    <div className="my-6 flex gap-x-4">
+                        <AboutUsSetting content={companyProfiles.about_us}></AboutUsSetting>
+                        <PolicySetting content={companyProfiles.policy}></PolicySetting>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
-            $table->string('title', 50);
+            $table->string('title', 50)->unique();
+            $table->string('slug', 50)->unique();
             $table->text('content');
             $table->boolean('is_header_home')->default(false);
             $table->boolean('is_header_program')->default(false);
